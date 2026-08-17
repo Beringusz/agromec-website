@@ -48,6 +48,14 @@ export class AdminModalComponent {
     isImportant: [true]
   });
 
+  constructor() {
+    this.loginForm.valueChanges.subscribe(() => {
+      if (this.loginError()) {
+        this.loginError.set('');
+      }
+    });
+  }
+
   private formatCurrentDate(): string {
     const months = [
       'Ianuarie', 'Februarie', 'Martie', 'Aprilie', 'Mai', 'Iunie',
@@ -59,6 +67,20 @@ export class AdminModalComponent {
 
   onLoginSubmit(): void {
     this.loginError.set('');
+    
+    if (this.loginForm.invalid) {
+      this.loginForm.markAllAsTouched();
+      const lang = this.langService.currentLang();
+      if (lang === 'hu') {
+        this.loginError.set('Kérjük adja meg az email címet és a jelszót.');
+      } else if (lang === 'en') {
+        this.loginError.set('Please provide your email and password.');
+      } else {
+        this.loginError.set('Vă rugăm să introduceți emailul și parola.');
+      }
+      return;
+    }
+
     const { email, password } = this.loginForm.value;
     const success = this.authService.login(email, password);
     if (!success) {
@@ -161,6 +183,8 @@ export class AdminModalComponent {
   }
 
   closeModal(): void {
+    this.loginError.set('');
+    this.loginForm.reset({ email: '', password: '' });
     this.authService.closeDashboard();
     this.authService.closeLoginModal();
   }
