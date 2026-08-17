@@ -4,6 +4,7 @@ import { FormsModule, ReactiveFormsModule, FormBuilder, FormGroup, Validators } 
 import { AuthService } from '../../services/auth.service';
 import { CommunicationsService, CommunicationItem } from '../../services/communications.service';
 import { LanguageService } from '../../services/language.service';
+import { ContactMessagesService, ContactMessage } from '../../services/contact-messages.service';
 
 @Component({
   selector: 'app-admin-modal',
@@ -15,10 +16,11 @@ import { LanguageService } from '../../services/language.service';
 export class AdminModalComponent {
   public authService = inject(AuthService);
   public commService = inject(CommunicationsService);
+  public messageService = inject(ContactMessagesService);
   public langService = inject(LanguageService);
   private fb = inject(FormBuilder);
 
-  public activeAdminTab = signal<'create' | 'list'>('create');
+  public activeAdminTab = signal<'create' | 'list' | 'messages'>('create');
   public loginError = signal<string>('');
   public publishSuccess = signal<string>('');
 
@@ -179,6 +181,12 @@ export class AdminModalComponent {
   resetAllDefaults(): void {
     if (confirm('Atenție: Această acțiune va reseta toate comunicatele la valorile inițiale din sistem. Continuați?')) {
       this.commService.resetToDefaults();
+    }
+  }
+
+  deleteMessage(id: number): void {
+    if (confirm('Sigur doriți să ștergeți acest mesaj din inbox?')) {
+      this.messageService.deleteMessage(id);
     }
   }
 

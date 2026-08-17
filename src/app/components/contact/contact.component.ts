@@ -2,6 +2,7 @@ import { Component, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { LanguageService } from '../../services/language.service';
+import { ContactMessagesService } from '../../services/contact-messages.service';
 
 @Component({
   selector: 'app-contact',
@@ -12,6 +13,7 @@ import { LanguageService } from '../../services/language.service';
 })
 export class ContactComponent {
   public langService = inject(LanguageService);
+  private messageService = inject(ContactMessagesService);
   private fb = inject(FormBuilder);
 
   public contactForm: FormGroup = this.fb.group({
@@ -33,7 +35,17 @@ export class ContactComponent {
 
     this.isSubmitting.set(true);
 
-    // Simulate safe client-side submission
+    const val = this.contactForm.value;
+
+    // Store message into inbox
+    this.messageService.addMessage({
+      name: val.name,
+      phone: val.phone,
+      email: val.email || 'Nespecificat',
+      subject: val.subject,
+      message: val.message
+    });
+
     setTimeout(() => {
       this.isSubmitting.set(false);
       this.isSubmitted.set(true);
@@ -45,6 +57,6 @@ export class ContactComponent {
       setTimeout(() => {
         this.isSubmitted.set(false);
       }, 7000);
-    }, 800);
+    }, 600);
   }
 }

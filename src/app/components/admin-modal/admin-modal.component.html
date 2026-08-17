@@ -141,6 +141,18 @@
           </svg>
           <span>Gestionare Comunicări ({{ commService.getRawItems().length }})</span>
         </button>
+
+        <button 
+          type="button" 
+          class="admin-tab-btn" 
+          [class.active]="activeAdminTab() === 'messages'" 
+          (click)="activeAdminTab.set('messages')">
+          <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+            <polyline points="22,6 12,13 2,6"></polyline>
+          </svg>
+          <span>Mesaje Primite ({{ messageService.messages().length }})</span>
+        </button>
       </div>
 
       <!-- Success Alert -->
@@ -306,6 +318,48 @@
               </tr>
             </tbody>
           </table>
+        </div>
+      </div>
+
+      <!-- SUB-VIEW C: RECEIVED MESSAGES INBOX -->
+      <div *ngIf="activeAdminTab() === 'messages'" class="manage-messages-panel">
+        <div class="manage-top-bar">
+          <div>
+            <h4>Mesaje Primite de pe Formularul de Contact</h4>
+            <p>Toate solicitările transmise de vizitatori și fermieri prin formularul de pe site.</p>
+          </div>
+        </div>
+
+        <div *ngIf="messageService.messages().length === 0" class="no-messages-box">
+          <p>📭 Nu există mesaje primite în acest moment.</p>
+        </div>
+
+        <div class="messages-list" *ngIf="messageService.messages().length > 0">
+          <div *ngFor="let msg of messageService.messages()" class="message-card">
+            <div class="message-header">
+              <div class="message-sender-info">
+                <strong class="sender-name">{{ msg.name }}</strong>
+                <span class="sender-date">{{ msg.date }}</span>
+              </div>
+              <div class="message-actions">
+                <a href="tel:{{ msg.phone }}" class="btn btn-outline-primary btn-sm">
+                  📞 {{ msg.phone }}
+                </a>
+                <button type="button" class="btn-table-delete" (click)="deleteMessage(msg.id)" title="Șterge mesaj">
+                  🗑️
+                </button>
+              </div>
+            </div>
+
+            <div class="message-meta-row">
+              <span class="msg-badge-subject">{{ msg.subject }}</span>
+              <span *ngIf="msg.email && msg.email !== 'Nespecificat'" class="msg-email">✉️ {{ msg.email }}</span>
+            </div>
+
+            <div class="message-body-text">
+              {{ msg.message }}
+            </div>
+          </div>
         </div>
       </div>
     </div>
