@@ -1,0 +1,272 @@
+<section id="contact" class="section contact-section">
+  <div class="container">
+    <!-- Section Header -->
+    <div class="section-header">
+      <span class="section-badge">
+        <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+        </svg>
+        {{ langService.t().contact.badge }}
+      </span>
+      <h2 class="section-title">{{ langService.t().contact.title }}</h2>
+      <p class="section-desc">{{ langService.t().contact.subtitle }}</p>
+    </div>
+
+    <!-- Contact Grid: Left details + Right Form -->
+    <div class="contact-grid">
+      <!-- Left Column: Official Identification Card -->
+      <div class="contact-info-col">
+        <div class="company-card">
+          <div class="company-header">
+            <div class="company-logo-badge">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M7 17m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0"></path>
+                <path d="M17 17m-4 0a4 4 0 1 0 8 0a4 4 0 1 0 -8 0"></path>
+                <path d="M7 15h4v-5h3l3 4h2"></path>
+                <path d="M6 10h1"></path>
+                <path d="M12 5v2"></path>
+              </svg>
+            </div>
+            <div>
+              <h3 class="company-title">{{ langService.t().contact.companyName }}</h3>
+              <span class="company-type">{{ langService.t().contact.legalType }}</span>
+            </div>
+          </div>
+
+          <div class="company-details-list">
+            <!-- Adresă -->
+            <div class="detail-item">
+              <div class="detail-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                  <circle cx="12" cy="10" r="3"></circle>
+                </svg>
+              </div>
+              <div class="detail-text">
+                <div class="detail-label">{{ langService.t().contact.headquarters }}</div>
+                <div class="detail-value">
+                  <strong>Sfântu Gheorghe</strong>, Str. Recoltei nr. 3<br>
+                  Județul Covasna, România
+                </div>
+              </div>
+            </div>
+
+            <!-- Telefon -->
+            <div class="detail-item">
+              <div class="detail-icon icon-phone-active">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                </svg>
+              </div>
+              <div class="detail-text">
+                <div class="detail-label">Număr de Telefon Direct:</div>
+                <div class="detail-value">
+                  <a href="tel:0723139940" class="phone-link">0723 139 940</a>
+                </div>
+              </div>
+            </div>
+
+            <!-- CUI & Reg Com -->
+            <div class="detail-item">
+              <div class="detail-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+                  <line x1="8" y1="21" x2="16" y2="21"></line>
+                  <line x1="12" y1="17" x2="12" y2="21"></line>
+                </svg>
+              </div>
+              <div class="detail-text">
+                <div class="detail-label">Cod Fiscal & Înregistrare:</div>
+                <div class="detail-value">
+                  <span class="fiscal-badge">{{ langService.t().contact.cui }}</span>
+                  <span class="fiscal-badge">{{ langService.t().contact.regCom }}</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Program -->
+            <div class="detail-item">
+              <div class="detail-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <polyline points="12 6 12 12 16 14"></polyline>
+                </svg>
+              </div>
+              <div class="detail-text">
+                <div class="detail-label">{{ langService.t().contact.hours }}:</div>
+                <div class="detail-value text-sm">
+                  {{ langService.t().contact.hoursWeekdays }}<br>
+                  {{ langService.t().contact.hoursSaturday }}<br>
+                  {{ langService.t().contact.hoursSunday }}
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Quick Action Buttons -->
+          <div class="quick-contact-actions">
+            <a href="tel:0723139940" class="btn btn-primary btn-call-large">
+              <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+              </svg>
+              <span>{{ langService.t().contact.callDirect }}: 0723 139 940</span>
+            </a>
+
+            <a href="https://maps.google.com/?q=Strada+Recoltei+3+Sfantu+Gheorghe+Covasna" target="_blank" rel="noopener noreferrer" class="btn btn-outline-primary">
+              <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polygon points="3 11 22 2 13 21 11 13 3 11"></polygon>
+              </svg>
+              <span>{{ langService.t().contact.openInMaps }}</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Column: Interactive Form -->
+      <div class="contact-form-col">
+        <div class="form-card">
+          <div class="form-header">
+            <h3>{{ langService.t().contact.formTitle }}</h3>
+            <p>{{ langService.t().contact.formSubtitle }}</p>
+          </div>
+
+          <!-- Success Alert -->
+          <div *ngIf="isSubmitted()" class="alert-success">
+            <svg class="icon-alert" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+              <polyline points="22 4 12 14.01 9 11.01"></polyline>
+            </svg>
+            <div>
+              <strong>Mesaj recepționat!</strong><br>
+              {{ langService.t().contact.successMessage }}
+            </div>
+          </div>
+
+          <form [formGroup]="contactForm" (ngSubmit)="onSubmit()" class="contact-form">
+            <!-- Row 1: Name and Phone -->
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label" for="contact-name">
+                  {{ langService.t().contact.nameLabel }} <span class="required">*</span>
+                </label>
+                <input 
+                  id="contact-name"
+                  type="text" 
+                  class="form-control" 
+                  formControlName="name"
+                  [placeholder]="langService.t().contact.namePlaceholder"
+                  [class.is-invalid]="contactForm.get('name')?.touched && contactForm.get('name')?.invalid"
+                />
+                <span *ngIf="contactForm.get('name')?.touched && contactForm.get('name')?.invalid" class="invalid-feedback">
+                  Vă rugăm să introduceți numele sau denumirea companiei.
+                </span>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="contact-phone">
+                  {{ langService.t().contact.phoneLabel }} <span class="required">*</span>
+                </label>
+                <input 
+                  id="contact-phone"
+                  type="tel" 
+                  class="form-control" 
+                  formControlName="phone"
+                  [placeholder]="langService.t().contact.phonePlaceholder"
+                  [class.is-invalid]="contactForm.get('phone')?.touched && contactForm.get('phone')?.invalid"
+                />
+                <span *ngIf="contactForm.get('phone')?.touched && contactForm.get('phone')?.invalid" class="invalid-feedback">
+                  Vă rugăm să introduceți un număr de telefon valid.
+                </span>
+              </div>
+            </div>
+
+            <!-- Row 2: Email and Subject -->
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label" for="contact-email">
+                  {{ langService.t().contact.emailLabel }}
+                </label>
+                <input 
+                  id="contact-email"
+                  type="email" 
+                  class="form-control" 
+                  formControlName="email"
+                  [placeholder]="langService.t().contact.emailPlaceholder"
+                />
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="contact-subject">
+                  {{ langService.t().contact.subjectLabel }}
+                </label>
+                <select id="contact-subject" class="form-control" formControlName="subject">
+                  <option [value]="langService.t().contact.subjectOption1">{{ langService.t().contact.subjectOption1 }}</option>
+                  <option [value]="langService.t().contact.subjectOption2">{{ langService.t().contact.subjectOption2 }}</option>
+                  <option [value]="langService.t().contact.subjectOption3">{{ langService.t().contact.subjectOption3 }}</option>
+                  <option [value]="langService.t().contact.subjectOption4">{{ langService.t().contact.subjectOption4 }}</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Message -->
+            <div class="form-group">
+              <label class="form-label" for="contact-message">
+                {{ langService.t().contact.messageLabel }} <span class="required">*</span>
+              </label>
+              <textarea 
+                id="contact-message"
+                rows="4" 
+                class="form-control" 
+                formControlName="message"
+                [placeholder]="langService.t().contact.messagePlaceholder"
+                [class.is-invalid]="contactForm.get('message')?.touched && contactForm.get('message')?.invalid"
+              ></textarea>
+              <span *ngIf="contactForm.get('message')?.touched && contactForm.get('message')?.invalid" class="invalid-feedback">
+                Vă rugăm să includeți detaliile solicitării dumneavoastră (minim 10 caractere).
+              </span>
+            </div>
+
+            <!-- Submit Button -->
+            <button 
+              type="submit" 
+              class="btn btn-primary btn-submit" 
+              [disabled]="isSubmitting()">
+              <span *ngIf="!isSubmitting()">{{ langService.t().contact.submitBtn }}</span>
+              <span *ngIf="isSubmitting()">{{ langService.t().contact.submitting }}</span>
+              <svg *ngIf="!isSubmitting()" class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="22" y1="2" x2="11" y2="13"></line>
+                <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+              </svg>
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- Interactive Location Map Container -->
+    <div class="map-wrapper">
+      <div class="map-card-header">
+        <div class="map-title-row">
+          <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"></polygon>
+            <line x1="8" y1="2" x2="8" y2="18"></line>
+            <line x1="16" y1="6" x2="16" y2="22"></line>
+          </svg>
+          <h4>Localizare: Sfântu Gheorghe, Str. Recoltei nr. 3, jud. Covasna</h4>
+        </div>
+        <a href="https://maps.google.com/?q=Strada+Recoltei+3+Sfantu+Gheorghe+Covasna" target="_blank" rel="noopener noreferrer" class="btn btn-outline-primary btn-sm">
+          Navighează prin Google Maps
+        </a>
+      </div>
+      <div class="map-iframe-container">
+        <!-- OpenStreetMap frame centered on Sfantu Gheorghe Str. Recoltei -->
+        <iframe 
+          title="Harta sediu AGROMEC Sfantu Gheorghe SA"
+          class="map-iframe"
+          loading="lazy" 
+          src="https://www.openstreetmap.org/export/embed.html?bbox=25.7700%2C45.8500%2C25.8150%2C45.8800&amp;layer=mapnik&amp;marker=45.8655%2C25.7925">
+        </iframe>
+      </div>
+    </div>
+  </div>
+</section>

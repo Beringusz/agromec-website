@@ -1,0 +1,151 @@
+<section id="communications" class="section communications-section">
+  <div class="container">
+    <!-- Section Header -->
+    <div class="section-header">
+      <span class="section-badge">
+        <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+          <polyline points="14 2 14 8 20 8"></polyline>
+          <line x1="16" y1="13" x2="8" y2="13"></line>
+          <line x1="16" y1="17" x2="8" y2="17"></line>
+        </svg>
+        {{ langService.t().communications.badge }}
+      </span>
+      <h2 class="section-title">{{ langService.t().communications.title }}</h2>
+      <p class="section-desc">{{ langService.t().communications.subtitle }}</p>
+    </div>
+
+    <!-- Control Bar (Filter tabs + Live Search) -->
+    <div class="comm-controls">
+      <!-- Category Tabs -->
+      <div class="comm-tabs">
+        <button 
+          type="button" 
+          class="comm-tab" 
+          [class.active]="commService.selectedCategory() === 'all'" 
+          (click)="filterCategory('all')">
+          {{ langService.t().communications.filterAll }}
+        </button>
+        <button 
+          type="button" 
+          class="comm-tab" 
+          [class.active]="commService.selectedCategory() === 'aga'" 
+          (click)="filterCategory('aga')">
+          {{ langService.t().communications.filterAga }}
+        </button>
+        <button 
+          type="button" 
+          class="comm-tab" 
+          [class.active]="commService.selectedCategory() === 'rapoarte'" 
+          (click)="filterCategory('rapoarte')">
+          {{ langService.t().communications.filterReports }}
+        </button>
+        <button 
+          type="button" 
+          class="comm-tab" 
+          [class.active]="commService.selectedCategory() === 'anunturi'" 
+          (click)="filterCategory('anunturi')">
+          {{ langService.t().communications.filterAnnouncements }}
+        </button>
+      </div>
+
+      <!-- Search Input -->
+      <div class="comm-search-box">
+        <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="11" cy="11" r="8"></circle>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+        <input 
+          type="text" 
+          class="search-input" 
+          [placeholder]="langService.t().communications.searchPlaceholder" 
+          [value]="commService.searchQuery()"
+          (input)="onSearchChange($event)"
+        />
+        <button 
+          *ngIf="commService.searchQuery()" 
+          type="button" 
+          class="search-clear-btn" 
+          (click)="commService.setSearch('')">
+          ✕
+        </button>
+      </div>
+    </div>
+
+    <!-- Communications Cards Grid -->
+    <div class="comm-grid" *ngIf="commService.filteredItems().length > 0; else noResults">
+      <div 
+        *ngFor="let item of commService.filteredItems()" 
+        class="comm-card" 
+        [class.important-card]="item.isImportant">
+        
+        <div class="comm-card-header">
+          <div class="comm-meta-top">
+            <span class="comm-category-pill" [attr.data-cat]="item.category">
+              {{ item.categoryLabel[langService.currentLang()] }}
+            </span>
+            <span class="comm-doc-badge">{{ item.docNumber }}</span>
+          </div>
+          <div class="comm-date">
+            <svg class="icon-date" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+              <line x1="16" y1="2" x2="16" y2="6"></line>
+              <line x1="8" y1="2" x2="8" y2="6"></line>
+              <line x1="3" y1="10" x2="21" y2="10"></line>
+            </svg>
+            <span>{{ item.date }}</span>
+          </div>
+        </div>
+
+        <h3 class="comm-card-title">{{ item.title[langService.currentLang()] }}</h3>
+        <p class="comm-card-summary">{{ item.summary[langService.currentLang()] }}</p>
+
+        <div class="comm-card-footer">
+          <div class="comm-sign-hint">
+            <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+              <circle cx="12" cy="7" r="4"></circle>
+            </svg>
+            <span>{{ item.signatory[langService.currentLang()] }}</span>
+          </div>
+
+          <div class="comm-card-actions">
+            <button type="button" class="btn btn-outline-primary btn-sm" (click)="viewItem(item)">
+              <span>{{ langService.t().communications.readMore }}</span>
+              <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Empty search fallback -->
+    <ng-template #noResults>
+      <div class="no-results-box">
+        <div class="no-results-icon">📄</div>
+        <h4>{{ langService.t().communications.noResults }}</h4>
+        <p>{{ langService.t().communications.noResultsDesc }}</p>
+        <button type="button" class="btn btn-outline-primary btn-sm" (click)="filterCategory('all'); commService.setSearch('')">
+          Resetare Căutare & Filtre
+        </button>
+      </div>
+    </ng-template>
+
+    <!-- Info Note for Shareholders & Stakeholders -->
+    <div class="shareholders-legal-notice">
+      <div class="legal-notice-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="10"></circle>
+          <line x1="12" y1="16" x2="12" y2="12"></line>
+          <line x1="12" y1="8" x2="12.01" y2="8"></line>
+        </svg>
+      </div>
+      <div class="legal-notice-text">
+        <strong>Informații pentru Acționari:</strong> Documentele originale, procesele verbale ale Adunărilor Generale ale Acționarilor și rapoartele contabile complete sunt arhivate și pot fi consultate la sediul societății din <strong>Sfântu Gheorghe, Str. Recoltei nr. 3, jud. Covasna</strong>, pe baza actului de identitate sau certificatului de acționar.
+      </div>
+    </div>
+  </div>
+</section>

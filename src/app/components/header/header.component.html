@@ -1,0 +1,155 @@
+<header class="header" [class.header-scrolled]="isScrolled()">
+  <!-- Top announcement / working hours bar -->
+  <div class="topbar">
+    <div class="container topbar-inner">
+      <div class="topbar-left">
+        <span class="topbar-item">
+          <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10"></circle>
+            <polyline points="12 6 12 12 16 14"></polyline>
+          </svg>
+          {{ langService.t().nav.workingHours }}
+        </span>
+        <span class="topbar-divider">|</span>
+        <span class="topbar-item">
+          <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+            <circle cx="12" cy="10" r="3"></circle>
+          </svg>
+          Sfântu Gheorghe, Str. Recoltei nr. 3
+        </span>
+      </div>
+      <div class="topbar-right">
+        <div class="lang-switcher">
+          <button 
+            type="button"
+            class="lang-btn" 
+            [class.active]="langService.currentLang() === 'ro'" 
+            (click)="changeLang('ro')"
+            title="Română">
+            RO
+          </button>
+          <span class="lang-dot">•</span>
+          <button 
+            type="button"
+            class="lang-btn" 
+            [class.active]="langService.currentLang() === 'hu'" 
+            (click)="changeLang('hu')"
+            title="Magyar">
+            HU
+          </button>
+          <span class="lang-dot">•</span>
+          <button 
+            type="button"
+            class="lang-btn" 
+            [class.active]="langService.currentLang() === 'en'" 
+            (click)="changeLang('en')"
+            title="English">
+            EN
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Navigation Navbar -->
+  <div class="navbar-main">
+    <div class="container navbar-container">
+      <a href="#hero" class="brand" (click)="closeMobileMenu()">
+        <div class="brand-logo-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <!-- Tractor / Agromechanic leaf badge icon -->
+            <path d="M7 17m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0"></path>
+            <path d="M17 17m-4 0a4 4 0 1 0 8 0a4 4 0 1 0 -8 0"></path>
+            <path d="M7 15h4v-5h3l3 4h2"></path>
+            <path d="M6 10h1"></path>
+            <path d="M12 5v2"></path>
+            <path d="M9 7l1 3"></path>
+          </svg>
+        </div>
+        <div class="brand-text">
+          <span class="brand-name">AGROMEC</span>
+          <span class="brand-sub">SFÂNTU GHEORGHE SA</span>
+        </div>
+      </a>
+
+      <!-- Desktop Nav Links -->
+      <nav class="nav-links">
+        <a href="#hero" class="nav-link">{{ langService.t().nav.home }}</a>
+        <a href="#about" class="nav-link">{{ langService.t().nav.about }}</a>
+        <a href="#services" class="nav-link">{{ langService.t().nav.services }}</a>
+        <a href="#communications" class="nav-link">{{ langService.t().nav.communications }}</a>
+        <a href="#contact" class="nav-link">{{ langService.t().nav.contact }}</a>
+      </nav>
+
+      <!-- Action Button -->
+      <div class="nav-actions">
+        <a href="tel:0723139940" class="btn btn-primary btn-call">
+          <svg class="icon-btn" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+          </svg>
+          <span>0723 139 940</span>
+        </a>
+
+        <!-- Mobile Menu Toggle Button -->
+        <button 
+          type="button" 
+          class="mobile-toggle" 
+          (click)="toggleMobileMenu()" 
+          [attr.aria-expanded]="mobileMenuOpen()"
+          aria-label="Deschide meniu">
+          <span class="hamburger-bar" [class.open]="mobileMenuOpen()"></span>
+          <span class="hamburger-bar" [class.open]="mobileMenuOpen()"></span>
+          <span class="hamburger-bar" [class.open]="mobileMenuOpen()"></span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile Drawer Menu -->
+  <div class="mobile-drawer" [class.active]="mobileMenuOpen()">
+    <div class="mobile-drawer-inner">
+      <div class="mobile-lang-row">
+        <span class="mobile-lang-label">Limbă / Nyelv:</span>
+        <div class="lang-switcher">
+          <button 
+            type="button"
+            class="lang-btn" 
+            [class.active]="langService.currentLang() === 'ro'" 
+            (click)="changeLang('ro')">RO</button>
+          <button 
+            type="button"
+            class="lang-btn" 
+            [class.active]="langService.currentLang() === 'hu'" 
+            (click)="changeLang('hu')">HU</button>
+          <button 
+            type="button"
+            class="lang-btn" 
+            [class.active]="langService.currentLang() === 'en'" 
+            (click)="changeLang('en')">EN</button>
+        </div>
+      </div>
+
+      <nav class="mobile-nav">
+        <a href="#hero" class="mobile-link" (click)="closeMobileMenu()">{{ langService.t().nav.home }}</a>
+        <a href="#about" class="mobile-link" (click)="closeMobileMenu()">{{ langService.t().nav.about }}</a>
+        <a href="#services" class="mobile-link" (click)="closeMobileMenu()">{{ langService.t().nav.services }}</a>
+        <a href="#communications" class="mobile-link" (click)="closeMobileMenu()">{{ langService.t().nav.communications }}</a>
+        <a href="#contact" class="mobile-link" (click)="closeMobileMenu()">{{ langService.t().nav.contact }}</a>
+      </nav>
+
+      <div class="mobile-footer-info">
+        <a href="tel:0723139940" class="btn btn-primary" style="width: 100%; margin-bottom: 1rem;">
+          <svg class="icon-btn" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+          </svg>
+          0723 139 940
+        </a>
+        <p class="mobile-address-note">
+          AGROMEC SFÂNTU GHEORGHE SA<br>
+          Str. Recoltei nr. 3, jud. Covasna
+        </p>
+      </div>
+    </div>
+  </div>
+</header>

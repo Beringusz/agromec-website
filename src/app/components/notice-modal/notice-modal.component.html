@@ -1,0 +1,61 @@
+<div class="modal-backdrop" *ngIf="commService.activeModalItem() as item" (click)="commService.closeModal()">
+  <div class="modal-dialog" (click)="$event.stopPropagation()">
+    <!-- Modal Header -->
+    <div class="modal-header">
+      <div class="modal-header-meta">
+        <span class="modal-doc-num">{{ item.docNumber }}</span>
+        <span class="modal-cat-tag">{{ item.categoryLabel[langService.currentLang()] }}</span>
+        <span class="modal-date">{{ item.date }}</span>
+      </div>
+      <button type="button" class="modal-close-btn" (click)="commService.closeModal()" aria-label="Inchide">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Official Corporate Letterhead banner inside modal -->
+    <div class="modal-letterhead">
+      <div class="letterhead-logo">
+        <strong>AGROMEC SFÂNTU GHEORGHE SA</strong>
+      </div>
+      <div class="letterhead-sub">
+        Sfântu Gheorghe, Str. Recoltei nr. 3, jud. Covasna • CUI: RO544894 • J14/233/1991
+      </div>
+    </div>
+
+    <!-- Modal Body -->
+    <div class="modal-body">
+      <h3 class="modal-title">{{ item.title[langService.currentLang()] }}</h3>
+      
+      <div class="modal-content-paragraphs">
+        <p *ngFor="let p of item.content[langService.currentLang()]" class="modal-p">
+          {{ p }}
+        </p>
+      </div>
+
+      <div class="modal-signatory-block">
+        <div class="sign-label">Semnat și aprobat oficial:</div>
+        <div class="sign-name">{{ item.signatory[langService.currentLang()] }}</div>
+        <div class="sign-date">{{ item.date }} • Sfântu Gheorghe</div>
+      </div>
+    </div>
+
+    <!-- Modal Footer -->
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline-primary btn-sm" (click)="printNotice()">
+        <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polyline points="6 9 6 2 18 2 18 9"></polyline>
+          <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
+          <rect x="6" y="14" width="12" height="8"></rect>
+        </svg>
+        <span>Printează / Salvează PDF</span>
+      </button>
+
+      <button type="button" class="btn btn-primary btn-sm" (click)="commService.closeModal()">
+        {{ langService.t().communications.closeModal }}
+      </button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,157 @@
+<section id="about" class="section about-section">
+  <div class="container">
+    <!-- Section Header -->
+    <div class="section-header">
+      <span class="section-badge">
+        <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+        </svg>
+        {{ langService.t().about.badge }}
+      </span>
+      <h2 class="section-title">{{ langService.t().about.title }}</h2>
+      <p class="section-desc">{{ langService.t().about.subtitle }}</p>
+    </div>
+
+    <!-- Official Corporate Spotlight Banner -->
+    <div class="official-spotlight-card">
+      <div class="spotlight-badge">Date Oficiale de Înregistrare</div>
+      <div class="spotlight-grid">
+        <div class="spotlight-item">
+          <div class="spotlight-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+              <line x1="16" y1="2" x2="16" y2="6"></line>
+              <line x1="8" y1="2" x2="8" y2="6"></line>
+              <line x1="3" y1="10" x2="21" y2="10"></line>
+            </svg>
+          </div>
+          <div>
+            <div class="spotlight-label">Data Înființării</div>
+            <div class="spotlight-value">30 Aprilie 1991</div>
+            <div class="spotlight-sub">Peste 35 de ani de funcționare continuă</div>
+          </div>
+        </div>
+
+        <div class="spotlight-item">
+          <div class="spotlight-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+              <circle cx="12" cy="10" r="3"></circle>
+            </svg>
+          </div>
+          <div>
+            <div class="spotlight-label">Sediul Social</div>
+            <div class="spotlight-value">Mun. Sfântu Gheorghe</div>
+            <div class="spotlight-sub">Jud. Covasna, Str. Recoltei nr. 3</div>
+          </div>
+        </div>
+
+        <div class="spotlight-item">
+          <div class="spotlight-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10"></circle>
+              <polyline points="12 6 12 12 14 14"></polyline>
+            </svg>
+          </div>
+          <div>
+            <div class="spotlight-label">Activitate Principală</div>
+            <div class="spotlight-value">Cod CAEN 0161</div>
+            <div class="spotlight-sub">Activități auxiliare pentru producția vegetală</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2 Column Layout with Image & Detailed Description -->
+    <div class="about-grid">
+      <div class="about-image-col">
+        <div class="image-wrapper">
+          <img src="/images/fleet.jpg" alt="Parcul de utilaje AGROMEC Sfantu Gheorghe SA" class="about-fleet-img" />
+          <div class="image-floating-badge">
+            <span class="badge-num">1991 - 2026</span>
+            <span class="badge-txt">Tradiție & Tehnică Agricolă</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="about-text-col">
+        <h3 class="about-subheading">Un pilon de stabilitate tehnologică pentru fermierii din Covasna</h3>
+        <p class="about-p">
+          <strong>AGROMEC SFANTU GHEORGHE SA</strong> este o companie înființată la <strong>30 Aprilie 1991</strong>, având sediul în <strong>Municipiul Sfântu Gheorghe, Județul Covasna, Str. Recoltei nr. 3</strong>.
+        </p>
+        <p class="about-p">
+          Activitatea principală a companiei este reprezentată de <strong>activități auxiliare pentru producția vegetală (Cod CAEN 0161)</strong>. De-a lungul celor peste trei decenii de la fondare, am acumulat o experiență de neegalat în asigurarea asistenței tehnologice și mecanizate pentru toate etapele ciclului de cultivare.
+        </p>
+        
+        <div class="caen-card">
+          <div class="caen-header">
+            <div class="caen-badge">CAEN 0161</div>
+            <h4>{{ langService.t().about.caenTitle }}</h4>
+          </div>
+          <p>{{ langService.t().about.caenDescription }}</p>
+        </div>
+
+        <div class="about-action-row">
+          <a href="#services" class="btn btn-primary">
+            <span>{{ langService.t().hero.ctaServices }}</span>
+            <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+          </a>
+          <a href="#contact" class="btn btn-outline-primary">
+            <span>{{ langService.t().hero.ctaContact }}</span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Values Grid -->
+    <div class="values-section">
+      <h3 class="values-main-title">{{ langService.t().about.valuesTitle }}</h3>
+      
+      <div class="values-grid">
+        <div class="value-card">
+          <div class="value-icon-box">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+            </svg>
+          </div>
+          <h4>{{ langService.t().about.val1Title }}</h4>
+          <p>{{ langService.t().about.val1Desc }}</p>
+        </div>
+
+        <div class="value-card">
+          <div class="value-icon-box">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
+              <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+            </svg>
+          </div>
+          <h4>{{ langService.t().about.val2Title }}</h4>
+          <p>{{ langService.t().about.val2Desc }}</p>
+        </div>
+
+        <div class="value-card">
+          <div class="value-icon-box">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10"></circle>
+              <polyline points="12 6 12 12 16 14"></polyline>
+            </svg>
+          </div>
+          <h4>{{ langService.t().about.val3Title }}</h4>
+          <p>{{ langService.t().about.val3Desc }}</p>
+        </div>
+
+        <div class="value-card">
+          <div class="value-icon-box">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+            </svg>
+          </div>
+          <h4>{{ langService.t().about.val4Title }}</h4>
+          <p>{{ langService.t().about.val4Desc }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

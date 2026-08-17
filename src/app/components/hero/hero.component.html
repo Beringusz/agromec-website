@@ -1,0 +1,75 @@
+<section id="hero" class="hero-section">
+  <!-- Background Image with dynamic overlay -->
+  <div class="hero-bg">
+    <img src="/images/hero.jpg" alt="AGROMEC Sfantu Gheorghe SA - Utilaje agricole Covasna" class="hero-bg-img" />
+    <div class="hero-overlay"></div>
+  </div>
+
+  <div class="container hero-container">
+    <div class="hero-content">
+      <!-- Badge -->
+      <div class="hero-badge">
+        <span class="pulse-dot"></span>
+        <span>{{ langService.t().hero.badge }}</span>
+      </div>
+
+      <!-- Main Headline -->
+      <h1 class="hero-title">
+        {{ langService.t().hero.title }}
+        <span class="hero-title-gradient">{{ langService.t().hero.titleHighlight }}</span>
+      </h1>
+
+      <!-- Subtitle -->
+      <p class="hero-subtitle">
+        {{ langService.t().hero.subtitle }}
+      </p>
+
+      <!-- CTAs -->
+      <div class="hero-actions">
+        <a href="#services" class="btn btn-primary btn-lg">
+          <span>{{ langService.t().hero.ctaServices }}</span>
+          <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <path d="M5 12h14M12 5l7 7-7 7"/>
+          </svg>
+        </a>
+
+        <a href="#contact" class="btn btn-outline-white btn-lg">
+          <span>{{ langService.t().hero.ctaContact }}</span>
+        </a>
+
+        <a href="#communications" class="btn btn-accent btn-lg">
+          <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+            <polyline points="14 2 14 8 20 8"></polyline>
+            <line x1="16" y1="13" x2="8" y2="13"></line>
+            <line x1="16" y1="17" x2="8" y2="17"></line>
+          </svg>
+          <span>{{ langService.t().hero.ctaCommunications }}</span>
+        </a>
+      </div>
+
+      <!-- Stats Grid -->
+      <div class="hero-stats">
+        <div class="stat-card">
+          <div class="stat-num">{{ langService.t().hero.statYears }}</div>
+          <div class="stat-label">{{ langService.t().hero.statYearsLabel }}</div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-num">CAEN {{ langService.t().hero.statHectares }}</div>
+          <div class="stat-label">{{ langService.t().hero.statHectaresLabel }}</div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-num">{{ langService.t().hero.statEstablished }}</div>
+          <div class="stat-label">{{ langService.t().hero.statEstablishedLabel }}</div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-num">{{ langService.t().hero.statReliability }}</div>
+          <div class="stat-label">{{ langService.t().hero.statReliabilityLabel }}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
