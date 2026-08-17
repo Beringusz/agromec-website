@@ -62,7 +62,14 @@ export class AdminModalComponent {
     const { email, password } = this.loginForm.value;
     const success = this.authService.login(email, password);
     if (!success) {
-      this.loginError.set('Credențiale invalide. Utilizator: admin@agromecsfgheorghe.ro / Parolă: agromec2026');
+      const lang = this.langService.currentLang();
+      if (lang === 'hu') {
+        this.loginError.set('Hibás email cím vagy jelszó.');
+      } else if (lang === 'en') {
+        this.loginError.set('Invalid email or password.');
+      } else {
+        this.loginError.set('Email sau parolă incorectă.');
+      }
     }
   }
 
