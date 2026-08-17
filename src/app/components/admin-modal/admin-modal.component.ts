@@ -5,6 +5,7 @@ import { AuthService } from '../../services/auth.service';
 import { CommunicationsService, CommunicationItem } from '../../services/communications.service';
 import { LanguageService } from '../../services/language.service';
 import { ContactMessagesService, ContactMessage } from '../../services/contact-messages.service';
+import { FirebaseBackendService } from '../../services/firebase-backend.service';
 
 @Component({
   selector: 'app-admin-modal',
@@ -17,6 +18,7 @@ export class AdminModalComponent {
   public authService = inject(AuthService);
   public commService = inject(CommunicationsService);
   public messageService = inject(ContactMessagesService);
+  public backend = inject(FirebaseBackendService);
   public langService = inject(LanguageService);
   private fb = inject(FormBuilder);
 

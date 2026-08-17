@@ -20,6 +20,11 @@
       </div>
 
       <div class="admin-header-actions">
+        <div *ngIf="authService.isLoggedIn()" class="admin-cloud-pill">
+          <span class="cloud-sync-dot" [class.is-syncing]="backend.isSyncing()"></span>
+          <span>{{ backend.isSyncing() ? 'Sincronizare Cloud...' : 'Cloud DB Activ' }}</span>
+        </div>
+
         <div *ngIf="authService.isLoggedIn()" class="admin-user-pill">
           <span class="user-status-dot"></span>
           <span>{{ authService.currentUser()?.name }}</span>

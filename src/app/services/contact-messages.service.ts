@@ -1,4 +1,5 @@
-import { Injectable, signal } from '@angular/core';
+import { Injectable, inject, signal } from '@angular/core';
+import { FirebaseBackendService } from './firebase-backend.service';
 
 export interface ContactMessage {
   id: number;
@@ -19,12 +20,14 @@ export const RECIPIENT_EMAIL = 'agromec.sfantu.gheorghe@gmail.com';
 })
 export class ContactMessagesService {
   private readonly STORAGE_KEY = 'agromec_contact_inbox';
+  private backend = inject(FirebaseBackendService);
   public recipientEmail = RECIPIENT_EMAIL;
 
   public messages = signal<ContactMessage[]>([]);
 
   constructor() {
     this.loadMessages();
+    this.initCloudSync();
   }
 
   private loadMessages(): void {
@@ -41,6 +44,18 @@ export class ContactMessagesService {
           console.error('Error loading messages from localStorage', e);
         }
       }
+    }
+  }
+
+  private async initCloudSync(): Promise<void> {
+    try {
+      const cloudMsgs = await this.backend.getMessages();
+      if (cloudMsgs && cloudMsgs.length > 0) {
+        this.messages.set(cloudMsgs);
+        this.saveMessages();
+      }
+    } catch (e) {
+      console.warn('Initial cloud message sync notice:', e);
     }
   }
 
@@ -64,8 +79,14 @@ export class ContactMessagesService {
       isRead: false
     };
 
-    this.messages.update(list => [newMessage, ...list]);
+    const updated = [newMessage, ...current];
+    this.messages.set(updated);
     this.saveMessages();
+
+    // Persist to Cloud Database
+    this.backend.saveMessages(updated).catch(err => {
+      console.warn('Cloud message sync notice:', err);
+    });
   }
 
   /**
@@ -100,12 +121,20 @@ export class ContactMessagesService {
   }
 
   public deleteMessage(id: number): void {
-    this.messages.update(list => list.filter(m => m.id !== id));
+    const updated = this.messages().filter(m => m.id !== id);
+    this.messages.set(updated);
     this.saveMessages();
+
+    // Persist to Cloud Database
+    this.backend.saveMessages(updated).catch(err => {
+      console.warn('Cloud message delete sync notice:', err);
+    });
   }
 
   public markAsRead(id: number): void {
-    this.messages.update(list => list.map(m => m.id === id ? { ...m, isRead: true } : m));
+    const updated = this.messages().map(m => m.id === id ? { ...m, isRead: true } : m);
+    this.messages.set(updated);
     this.saveMessages();
+    this.backend.saveMessages(updated).catch(() => {});
   }
 }

@@ -1,5 +1,6 @@
-import { Injectable, signal, computed } from '@angular/core';
+import { Injectable, inject, signal, computed } from '@angular/core';
 import { SupportedLang } from './language.service';
+import { FirebaseBackendService } from './firebase-backend.service';
 
 export interface CommunicationItem {
   id: number;
@@ -233,6 +234,7 @@ const DEFAULT_ITEMS: CommunicationItem[] = [
 })
 export class CommunicationsService {
   private readonly STORAGE_KEY = 'agromec_communications_data';
+  private backend = inject(FirebaseBackendService);
 
   private readonly items = signal<CommunicationItem[]>([]);
 
@@ -242,6 +244,7 @@ export class CommunicationsService {
 
   constructor() {
     this.loadFromStorage();
+    this.initCloudSync();
   }
 
   private loadFromStorage(): void {
@@ -266,6 +269,24 @@ export class CommunicationsService {
   private saveToStorage(): void {
     if (typeof window !== 'undefined' && window.localStorage) {
       localStorage.setItem(this.STORAGE_KEY, JSON.stringify(this.items()));
+    }
+  }
+
+  /**
+   * Synchronizes with Firebase Cloud Database on initialization
+   */
+  private async initCloudSync(): Promise<void> {
+    try {
+      const cloudItems = await this.backend.getCommunications();
+      if (cloudItems && cloudItems.length > 0) {
+        this.items.set(cloudItems);
+        this.saveToStorage();
+      } else if (this.items().length > 0) {
+        // Initialize cloud database with initial default items
+        await this.backend.saveCommunications(this.items());
+      }
+    } catch (e) {
+      console.warn('Initial cloud sync notice:', e);
     }
   }
 
@@ -312,14 +333,28 @@ export class CommunicationsService {
     };
 
     // Prepend to show newest first
-    this.items.update(list => [newItem, ...list]);
+    const updatedList = [newItem, ...current];
+    this.items.set(updatedList);
     this.saveToStorage();
+
+    // Persist asynchronously to Cloud Database
+    this.backend.saveCommunications(updatedList).catch(err => {
+      console.warn('Cloud sync error on add:', err);
+    });
+
     return newItem;
   }
 
   public deleteCommunication(id: number): void {
-    this.items.update(list => list.filter(i => i.id !== id));
+    const updatedList = this.items().filter(i => i.id !== id);
+    this.items.set(updatedList);
     this.saveToStorage();
+
+    // Persist asynchronously to Cloud Database
+    this.backend.saveCommunications(updatedList).catch(err => {
+      console.warn('Cloud sync error on delete:', err);
+    });
+
     if (this.activeModalItem()?.id === id) {
       this.closeModal();
     }
@@ -328,6 +363,11 @@ export class CommunicationsService {
   public resetToDefaults(): void {
     this.items.set(DEFAULT_ITEMS);
     this.saveToStorage();
+
+    // Sync reset to cloud
+    this.backend.saveCommunications(DEFAULT_ITEMS).catch(err => {
+      console.warn('Cloud sync error on reset:', err);
+    });
   }
 
   public setCategory(cat: string): void {
