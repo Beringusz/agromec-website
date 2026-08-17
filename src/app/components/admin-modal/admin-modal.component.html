@@ -14,7 +14,7 @@
           </svg>
         </div>
         <div>
-          <h3 class="admin-title">Portal Administrare & Publicare</h3>
+          <h3 class="admin-title">{{ langService.t().admin.portalTitle }}</h3>
           <span class="admin-subtitle">AGROMEC SFÂNTU GHEORGHE SA</span>
         </div>
       </div>
@@ -22,7 +22,7 @@
       <div class="admin-header-actions">
         <div *ngIf="authService.isLoggedIn()" class="admin-cloud-pill">
           <span class="cloud-sync-dot" [class.is-syncing]="backend.isSyncing()"></span>
-          <span>{{ backend.isSyncing() ? 'Sincronizare Cloud...' : 'Cloud DB Activ' }}</span>
+          <span>{{ backend.isSyncing() ? langService.t().admin.cloudSyncing : langService.t().admin.cloudActive }}</span>
         </div>
 
         <div *ngIf="authService.isLoggedIn()" class="admin-user-pill">
@@ -36,7 +36,7 @@
             <polyline points="16 17 21 12 16 7"></polyline>
             <line x1="21" y1="12" x2="9" y2="12"></line>
           </svg>
-          <span>Deconectare</span>
+          <span>{{ langService.t().admin.logoutBtn }}</span>
         </button>
 
         <button type="button" class="admin-close-btn" (click)="closeModal()" aria-label="Inchide">
@@ -57,8 +57,8 @@
             <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
           </svg>
         </div>
-        <h4>Autentificare Conducere / Administrator</h4>
-        <p>Introduceți datele de acces pentru a publica sau gestiona comunicările oficiale.</p>
+        <h4>{{ langService.t().admin.loginTitle }}</h4>
+        <p>{{ langService.t().admin.loginSubtitle }}</p>
       </div>
 
       <div *ngIf="loginError()" class="alert-error">
@@ -73,7 +73,7 @@
               <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
               <polyline points="22,6 12,13 2,6"></polyline>
             </svg>
-            Email:
+            {{ langService.t().admin.emailLabel }}
           </label>
           <input 
             id="login-email"
@@ -92,7 +92,7 @@
               <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
               <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
             </svg>
-            Password:
+            {{ langService.t().admin.passLabel }}
           </label>
           <input 
             id="login-pass"
@@ -110,7 +110,7 @@
             <polyline points="10 17 15 12 10 7"></polyline>
             <line x1="15" y1="12" x2="3" y2="12"></line>
           </svg>
-          <span>Conectare la Panoul de Administrare</span>
+          <span>{{ langService.t().admin.loginBtn }}</span>
         </button>
       </form>
     </div>
@@ -128,7 +128,7 @@
             <line x1="12" y1="5" x2="12" y2="19"></line>
             <line x1="5" y1="12" x2="19" y2="12"></line>
           </svg>
-          <span>Adaugă Comunicat Nou</span>
+          <span>{{ langService.t().admin.tabCreate }}</span>
         </button>
 
         <button 
@@ -144,7 +144,7 @@
             <line x1="3" y1="12" x2="3.01" y2="12"></line>
             <line x1="3" y1="18" x2="3.01" y2="18"></line>
           </svg>
-          <span>Gestionare Comunicări ({{ commService.getRawItems().length }})</span>
+          <span>{{ langService.t().admin.tabManage }} ({{ commService.getRawItems().length }})</span>
         </button>
 
         <button 
@@ -156,7 +156,7 @@
             <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
             <polyline points="22,6 12,13 2,6"></polyline>
           </svg>
-          <span>Mesaje Primite ({{ messageService.messages().length }})</span>
+          <span>{{ langService.t().admin.tabMessages }} ({{ messageService.messages().length }})</span>
         </button>
       </div>
 
@@ -186,14 +186,14 @@
           <!-- Title (Required) -->
           <div class="form-group">
             <label class="form-label" for="comm-title-ro">
-              Titlu Anunț / Comunicat: <span class="required">*</span>
+              {{ langService.t().admin.fieldTitle }} <span class="required">*</span>
             </label>
             <input 
               id="comm-title-ro"
               type="text" 
               class="form-control form-control-lg" 
               formControlName="titleRo" 
-              placeholder="ex: Convocator Adunarea Generală a Acționarilor AGROMEC SA..."
+              placeholder="ex: Convocator AGA / Informare..."
               [class.is-invalid]="announcementForm.get('titleRo')?.touched && announcementForm.get('titleRo')?.invalid"
             />
           </div>
@@ -201,14 +201,14 @@
           <!-- Content (Required) -->
           <div class="form-group">
             <label class="form-label" for="comm-content-ro">
-              Conținut Text Anunț (Textul complet): <span class="required">*</span>
+              {{ langService.t().admin.fieldContent }} <span class="required">*</span>
             </label>
             <textarea 
               id="comm-content-ro"
               rows="4" 
               class="form-control" 
               formControlName="contentRo"
-              placeholder="Scrieți aici textul hirdetés-nek vagy a comunicat-nak..."
+              placeholder="Textul complet..."
               [class.is-invalid]="announcementForm.get('contentRo')?.touched && announcementForm.get('contentRo')?.invalid"
             ></textarea>
           </div>
@@ -216,16 +216,16 @@
           <!-- Category & Doc Number -->
           <div class="form-grid-2">
             <div class="form-group">
-              <label class="form-label" for="comm-cat">Categorie Comunicat:</label>
+              <label class="form-label" for="comm-cat">{{ langService.t().admin.fieldCategory }}</label>
               <select id="comm-cat" class="form-control" formControlName="category">
-                <option value="anunturi">Anunț General / Campanie Agricolă</option>
-                <option value="aga">Convocator AGA (Adunarea Generală a Acționarilor)</option>
-                <option value="rapoarte">Raport Financiar / Bilanț Contabil</option>
+                <option value="anunturi">Anunț General / Általános Hirdetmény</option>
+                <option value="aga">Convocator AGA / Közgyűlési Meghívó</option>
+                <option value="rapoarte">Raport Financiar / Pénzügyi Jelentés</option>
               </select>
             </div>
 
             <div class="form-group">
-              <label class="form-label" for="comm-doc">Număr Document Oficial:</label>
+              <label class="form-label" for="comm-doc">{{ langService.t().admin.fieldDocNumber }}</label>
               <input id="comm-doc" type="text" class="form-control" formControlName="docNumber" />
             </div>
           </div>
@@ -233,14 +233,14 @@
           <!-- Date and Important Flag -->
           <div class="form-grid-2">
             <div class="form-group">
-              <label class="form-label" for="comm-date">Data Publicării:</label>
+              <label class="form-label" for="comm-date">{{ langService.t().admin.fieldDate }}</label>
               <input id="comm-date" type="text" class="form-control" formControlName="date" />
             </div>
 
             <div class="form-group checkbox-group">
               <label class="checkbox-label">
                 <input type="checkbox" formControlName="isImportant" />
-                <span>⭐ Marchează ca Anunț Important / Evidențiat</span>
+                <span>{{ langService.t().admin.fieldImportant }}</span>
               </label>
             </div>
           </div>
@@ -248,20 +248,20 @@
           <!-- Optional Summary -->
           <div class="form-group">
             <label class="form-label" for="comm-summary-ro">
-              Rezumat Scurt <small class="text-muted">(Opțional - se completează automat)</small>:
+              {{ langService.t().admin.fieldSummary }}
             </label>
             <textarea 
               id="comm-summary-ro"
               rows="2" 
               class="form-control" 
               formControlName="summaryRo"
-              placeholder="Opțional: scurt rezumat de 1-2 rânduri..."
+              placeholder="..."
             ></textarea>
           </div>
 
           <!-- Signatory -->
           <div class="form-group">
-            <label class="form-label" for="comm-sign-ro">Semnatar Oficial:</label>
+            <label class="form-label" for="comm-sign-ro">{{ langService.t().admin.fieldSignatory }}</label>
             <input 
               id="comm-sign-ro"
               type="text" 
@@ -277,7 +277,7 @@
               <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <polyline points="20 6 9 17 4 12"></polyline>
               </svg>
-              <span>Publică Comunicatul Acum / Közzététel</span>
+              <span>{{ langService.t().admin.publishBtn }}</span>
             </button>
           </div>
         </form>
@@ -287,8 +287,8 @@
       <div *ngIf="activeAdminTab() === 'list'" class="manage-announcements-panel">
         <div class="manage-top-bar">
           <div>
-            <h4>Toate Comunicările Active pe Site</h4>
-            <p>Puteți șterge sau reseta comunicările afișate în timp real.</p>
+            <h4>{{ langService.t().admin.tabManage }}</h4>
+            <p>Sincronizat în timp real pe toate dispozitivele prin Firebase Cloud Database.</p>
           </div>
           <button type="button" class="btn btn-outline-danger btn-sm" (click)="resetAllDefaults()">
             Resetează la Anunțurile Implicite
@@ -299,12 +299,12 @@
           <table class="admin-table">
             <thead>
               <tr>
-                <th>Nr. Doc</th>
-                <th>Dată</th>
-                <th>Categorie</th>
-                <th>Titlu</th>
-                <th>Important</th>
-                <th>Acțiuni</th>
+                <th>{{ langService.t().admin.tableDoc }}</th>
+                <th>{{ langService.t().admin.tableDate }}</th>
+                <th>{{ langService.t().admin.tableCategory }}</th>
+                <th>{{ langService.t().admin.tableTitle }}</th>
+                <th>{{ langService.t().admin.tableImportant }}</th>
+                <th>{{ langService.t().admin.tableActions }}</th>
               </tr>
             </thead>
             <tbody>
@@ -343,13 +343,13 @@
       <div *ngIf="activeAdminTab() === 'messages'" class="manage-messages-panel">
         <div class="manage-top-bar">
           <div>
-            <h4>Mesaje Primite de pe Formularul de Contact</h4>
-            <p>Toate solicitările transmise de vizitatori și fermieri prin formularul de pe site.</p>
+            <h4>{{ langService.t().admin.inboxTitle }}</h4>
+            <p>{{ langService.t().admin.inboxSubtitle }}</p>
           </div>
         </div>
 
         <div *ngIf="messageService.messages().length === 0" class="no-messages-box">
-          <p>📭 Nu există mesaje primite în acest moment.</p>
+          <p>📭 {{ langService.t().admin.noMessages }}</p>
         </div>
 
         <div class="messages-list" *ngIf="messageService.messages().length > 0">

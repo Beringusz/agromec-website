@@ -6,7 +6,6 @@ export interface Translations {
   nav: {
     home: string;
     about: string;
-    services: string;
     communications: string;
     contact: string;
     callNow: string;
@@ -17,7 +16,6 @@ export interface Translations {
     title: string;
     titleHighlight: string;
     subtitle: string;
-    ctaServices: string;
     ctaContact: string;
     ctaCommunications: string;
     statYears: string;
@@ -50,30 +48,6 @@ export interface Translations {
     val4Title: string;
     val4Desc: string;
     experienceText: string;
-  };
-  services: {
-    badge: string;
-    title: string;
-    subtitle: string;
-    s1Title: string;
-    s1Desc: string;
-    s1Tag: string;
-    s2Title: string;
-    s2Desc: string;
-    s2Tag: string;
-    s3Title: string;
-    s3Desc: string;
-    s3Tag: string;
-    s4Title: string;
-    s4Desc: string;
-    s4Tag: string;
-    s5Title: string;
-    s5Desc: string;
-    s5Tag: string;
-    s6Title: string;
-    s6Desc: string;
-    s6Tag: string;
-    requestQuote: string;
   };
   communications: {
     badge: string;
@@ -133,10 +107,41 @@ export interface Translations {
     openInMaps: string;
     whatsappDirect: string;
   };
+  admin: {
+    portalTitle: string;
+    loginTitle: string;
+    loginSubtitle: string;
+    emailLabel: string;
+    passLabel: string;
+    loginBtn: string;
+    logoutBtn: string;
+    tabCreate: string;
+    tabManage: string;
+    tabMessages: string;
+    cloudActive: string;
+    cloudSyncing: string;
+    fieldCategory: string;
+    fieldDocNumber: string;
+    fieldDate: string;
+    fieldImportant: string;
+    fieldTitle: string;
+    fieldContent: string;
+    fieldSummary: string;
+    fieldSignatory: string;
+    publishBtn: string;
+    tableDoc: string;
+    tableDate: string;
+    tableCategory: string;
+    tableTitle: string;
+    tableImportant: string;
+    tableActions: string;
+    inboxTitle: string;
+    inboxSubtitle: string;
+    noMessages: string;
+  };
   footer: {
     tagline: string;
     quickLinks: string;
-    servicesList: string;
     legalTitle: string;
     rights: string;
     cookies: string;
@@ -150,7 +155,6 @@ const TRANSLATIONS: Record<SupportedLang, Translations> = {
     nav: {
       home: 'Acasă',
       about: 'Despre Companie',
-      services: 'Activitate & Servicii',
       communications: 'Comunicări',
       contact: 'Contact',
       callNow: 'Sună Acum',
@@ -161,7 +165,6 @@ const TRANSLATIONS: Record<SupportedLang, Translations> = {
       title: 'Partenerul dumneavoastră de încredere în',
       titleHighlight: 'Activități Auxiliare pentru Producția Vegetală',
       subtitle: 'AGROMEC SFÂNTU GHEORGHE SA oferă de peste 35 de ani servicii mecanizate complete, asistență tehnologică și soluții dedicate fermierilor și asociațiilor agricole din județul Covasna.',
-      ctaServices: 'Descoperă Serviciile',
       ctaContact: 'Contactează-ne',
       ctaCommunications: 'Vezi Comunicările Oficiale',
       statYears: '35+',
@@ -195,30 +198,6 @@ const TRANSLATIONS: Record<SupportedLang, Translations> = {
       val4Desc: 'Transparență decizională totală, comunicare deschisă cu acționarii și partenerii contractuali.',
       experienceText: 'De la înființarea la 30 Aprilie 1991, AGROMEC SFÂNTU GHEORGHE SA a susținut dezvoltarea exploatațiilor agricole locale, adaptându-se permanent la cerințele moderne de eficiență și randament în producția vegetală.'
     },
-    services: {
-      badge: 'Activitate Principală CAEN 0161',
-      title: 'Servicii Mecanizate pentru Producția Vegetală',
-      subtitle: 'Asigurăm gama completă de lucrări agricole mecanizate necesare obținerii unor recolte bogate și de calitate superioară.',
-      s1Title: 'Pregătirea Terenului & Arături',
-      s1Desc: 'Arături de bază la adâncime optimă, scarificare, discuire, nivelare și pregătirea minuțioasă a patului germinativ cu agregate moderne.',
-      s1Tag: 'Agrotehnică Primară',
-      s2Title: 'Semănat Mecanizat de Precizie',
-      s2Desc: 'Însămânțare calibrată pentru culturi de toamnă și primăvară: grâu, porumb, cartof, floarea-soarelui, sfeclă, rapiță și furaje.',
-      s2Tag: 'Precizie & Densitate',
-      s3Title: 'Tratamente Fitosanitare & Fertilizare',
-      s3Desc: 'Erbicidări, aplicare tratamente fungicide și insecticide cu echipamente de pulverizare precisă, fertilizări faziale de bază și foliare.',
-      s3Tag: 'Protecția Culturilor',
-      s4Title: 'Întreținerea Mecanică a Culturilor',
-      s4Desc: 'Prășit mecanic, bilonat pentru culturile de cartof și rădăcinoase, aerarea solului și distrugerea buruienilor fără chimicale în exces.',
-      s4Tag: 'Lucrări Sezoniere',
-      s5Title: 'Recoltare Mecanizată',
-      s5Desc: 'Recoltarea cerealelor păioase, porumbului, culturilor industriale și tuberculilor cu combine performante, reducând pierderile la minim.',
-      s5Tag: 'Eficiență Maximă',
-      s6Title: 'Transport Tehnologic & Asistență',
-      s6Desc: 'Transportul producției din câmp către spațiile de depozitare, manevrabilitate și suport logistic complet pe durata campaniei.',
-      s6Tag: 'Logistică Agricolă',
-      requestQuote: 'Solicită o ofertă de lucrări'
-    },
     communications: {
       badge: 'Transparență & Guvernanță Corporativă',
       title: 'Comunicări & Anunțuri Oficiale',
@@ -242,7 +221,7 @@ const TRANSLATIONS: Record<SupportedLang, Translations> = {
     contact: {
       badge: 'Date de Contact & Identificare',
       title: 'Contactați AGROMEC SFÂNTU GHEORGHE SA',
-      subtitle: 'Suntem la dispoziția dumneavoastră pentru contractări de servicii agricole mecanizate, colaborări și relația cu acționarii.',
+      subtitle: 'Suntem la dispoziția dumneavoastră pentru colaborări agricole mecanizate, relația cu acționarii și orice solicitare oficială.',
       companyName: 'AGROMEC SFANTU GHEORGHE SA',
       legalType: 'Societate pe Acțiuni • Înființată la 30.04.1991',
       headquarters: 'Sediul Social:',
@@ -250,13 +229,13 @@ const TRANSLATIONS: Record<SupportedLang, Translations> = {
       cui: 'CUI: RO544894',
       regCom: 'Nr. Reg. Com.: J14/233/1991',
       phone: '0723 139 940',
-      email: 'contact@agromecsfgheorghe.ro',
+      email: 'agromec.sfantu.gheorghe@gmail.com',
       hours: 'Program de Lucru',
       hoursWeekdays: 'Luni - Vineri: 08:00 - 16:30',
       hoursSaturday: 'Sâmbătă: 08:00 - 13:00 (în perioada campaniilor)',
       hoursSunday: 'Duminică: Închis',
       formTitle: 'Trimiteți-ne un Mesaj',
-      formSubtitle: 'Completați formularul de mai jos și un reprezentant al companiei vă va răspunde în cel mai scurt timp.',
+      formSubtitle: 'Completați formularul de mai jos și un reprezentant al conducerii vă va răspunde în cel mai scurt timp.',
       nameLabel: 'Nume și Prenume / Denumire Companie',
       namePlaceholder: 'ex: Popescu Ion / Agro SRL',
       phoneLabel: 'Număr de Telefon',
@@ -264,23 +243,54 @@ const TRANSLATIONS: Record<SupportedLang, Translations> = {
       emailLabel: 'Adresă de Email',
       emailPlaceholder: 'adresa@domeniu.ro',
       subjectLabel: 'Tipul Solicitării',
-      subjectOption1: 'Servicii Agricole Mecanizate (CAEN 0161)',
+      subjectOption1: 'Servicii Auxiliare Producție Vegetală (CAEN 0161)',
       subjectOption2: 'Relația cu Acționarii / Informații AGA',
-      subjectOption3: 'Parteneriat Comercial / Prestări Servicii',
+      subjectOption3: 'Parteneriat Comercial / Colaborare',
       subjectOption4: 'Altă Solicitare',
       messageLabel: 'Mesajul Dumneavoastră',
-      messagePlaceholder: 'Descrieți cerințele dumneavoastră (suprafață teren, tip cultură, lucrări solicitate)...',
+      messagePlaceholder: 'Introduceți detaliile mesajului dumneavoastră...',
       submitBtn: 'Trimite Mesajul',
       submitting: 'Se trimite...',
-      successMessage: 'Vă mulțumim! Mesajul dumneavoastră a fost trimis cu succes către echipa AGROMEC.',
+      successMessage: 'Vă mulțumim! Mesajul dumneavoastră a fost expediat cu succes către conducerea AGROMEC.',
       callDirect: 'Apelează direct',
       openInMaps: 'Deschide în Google Maps / Waze',
       whatsappDirect: 'Mesaj pe WhatsApp'
     },
+    admin: {
+      portalTitle: 'Portal Administrare & Publicare',
+      loginTitle: 'Autentificare Conducere / Administrator',
+      loginSubtitle: 'Introduceți datele de acces pentru a publica sau gestiona comunicările oficiale.',
+      emailLabel: 'Email:',
+      passLabel: 'Password:',
+      loginBtn: 'Conectare la Panoul de Administrare',
+      logoutBtn: 'Deconectare',
+      tabCreate: 'Adaugă Comunicat Nou',
+      tabManage: 'Gestionare Comunicări',
+      tabMessages: 'Mesaje Primite',
+      cloudActive: 'Cloud DB Activ',
+      cloudSyncing: 'Sincronizare Cloud...',
+      fieldCategory: 'Categorie Comunicat:',
+      fieldDocNumber: 'Număr Document Oficial:',
+      fieldDate: 'Data Publicării:',
+      fieldImportant: 'Marchează ca Anunț Important / Evidențiat',
+      fieldTitle: 'Titlu Anunț / Comunicat:',
+      fieldContent: 'Conținut Text Anunț (Textul complet):',
+      fieldSummary: 'Rezumat Scurt (Opțional):',
+      fieldSignatory: 'Semnatar Oficial:',
+      publishBtn: 'Publică Comunicatul Acum',
+      tableDoc: 'Nr. Doc',
+      tableDate: 'Dată',
+      tableCategory: 'Categorie',
+      tableTitle: 'Titlu',
+      tableImportant: 'Important',
+      tableActions: 'Acțiuni',
+      inboxTitle: 'Mesaje Primite de pe Formularul de Contact',
+      inboxSubtitle: 'Toate solicitările transmise de vizitatori prin formularul de pe site.',
+      noMessages: 'Nu există mesaje primite în acest moment.'
+    },
     footer: {
-      tagline: 'Peste 35 de ani de excelență și dedicare în activități auxiliare pentru producția vegetală (CAEN 0161) în județul Covasna.',
+      tagline: 'Peste 35 de ani de excelență și continuitate în activități auxiliare pentru producția vegetală (CAEN 0161) în județul Covasna.',
       quickLinks: 'Navigare Rapidă',
-      servicesList: 'Servicii Principale',
       legalTitle: 'Date de Identificare Fiscală',
       rights: 'Toate drepturile rezervate.',
       cookies: 'Politica de Cookie-uri',
@@ -292,7 +302,6 @@ const TRANSLATIONS: Record<SupportedLang, Translations> = {
     nav: {
       home: 'Főoldal',
       about: 'A Vállalatról',
-      services: 'Tevékenység & Szolgáltatások',
       communications: 'Közlemények',
       contact: 'Kapcsolat',
       callNow: 'Hívjon Most',
@@ -302,8 +311,7 @@ const TRANSLATIONS: Record<SupportedLang, Translations> = {
       badge: 'Alapítva: 1991. április 30. • Sepsiszentgyörgy',
       title: 'Az Ön megbízható partnere a',
       titleHighlight: 'Növénytermesztést Kiegészítő Tevékenységekben',
-      subtitle: 'Az AGROMEC SFÂNTU GHEORGHE SA több mint 35 éve nyújt teljes körű gépesített mezőgazdasági szolgáltatásokat és technológiai segítséget Kovászna megyei gazdáknak.',
-      ctaServices: 'Szolgáltatások Megtekintése',
+      subtitle: 'Az AGROMEC SFÂNTU GHEORGHE SA több mint 35 éve nyújt gépesített mezőgazdasági szolgáltatásokat és technológiai támogatást Kovászna megyei gazdáknak.',
       ctaContact: 'Kapcsolatfelvétel',
       ctaCommunications: 'Hivatalos Közlemények',
       statYears: '35+',
@@ -320,7 +328,7 @@ const TRANSLATIONS: Record<SupportedLang, Translations> = {
       title: 'Az AGROMEC SFÂNTU GHEORGHE SA Vállalatról',
       subtitle: 'Több mint három évtizedes múlt a fenntartható mezőgazdaság és a Kovászna megyei termőföldek hatékony művelése szolgálatában.',
       estDate: '1991. április 30.',
-      estDetails: 'Román tőkéjű részvénytársaság, amely több mint 35 éve folyamatosan működik műszaki bázisként a sepsiszentgyörgyi térségben.',
+      estDetails: 'Román tőkéjű részvénytársaság, amely több mint 35 éve folyamatosan működik műszaki és technológiai bázisként Sepsiszentgyörgyön.',
       headquarters: 'Székhely',
       headquartersDetails: 'Sepsiszentgyörgy (Sfântu Gheorghe), Kovászna megye, Aratás (Recoltei) utca 3. szám, irányítószám 520036.',
       caenTitle: 'Fő Tevékenységi Kör',
@@ -335,31 +343,7 @@ const TRANSLATIONS: Record<SupportedLang, Translations> = {
       val3Desc: 'Az agrotechnikai határidők szigorú betartása minden egyes növénykultúra esetében.',
       val4Title: 'Átláthatóság & Vezetés',
       val4Desc: 'Teljes nyitottság a részvényesek és a szerződéses partnerek felé.',
-      experienceText: '1991. április 30-i megalakulása óta az AGROMEC SFÂNTU GHEORGHE SA folyamatosan támogatta a helyi gazdaságokat, folyamatosan alkalmazkodva a modern növénytermesztés követelményeihez.'
-    },
-    services: {
-      badge: 'Fő Tevékenység CAEN 0161',
-      title: 'Gépesített Növénytermesztési Szolgáltatások',
-      subtitle: 'A bőséges és kiváló minőségű termés eléréséhez szükséges gépesített mezőgazdasági munkálatok teljes skáláját biztosítjuk.',
-      s1Title: 'Talajelőkészítés & Szántás',
-      s1Desc: 'Alapszántás optimális mélységben, lazítás, tárcsázás, elegyengetés és magágykészítés modern gépkapcsolatokkal.',
-      s1Tag: 'Alap agrotechnika',
-      s2Title: 'Precíziós Gépi Vetés',
-      s2Desc: 'Kalibrált vetés őszi és tavaszi kultúrákhoz: búza, kukorica, burgonya, napraforgó, cukorrépa, repce és takarmánynövények.',
-      s2Tag: 'Precízió & Sűrűség',
-      s3Title: 'Növényvédelem & Tápanyag-utánpótlás',
-      s3Desc: 'Gyomirtás, gomba- és rovarölő szeres kezelések permetezőgépekkel, alap- és levéltrágyázás.',
-      s3Tag: 'Növényvédelem',
-      s4Title: 'Kultúrák Gépi Gondozása',
-      s4Desc: 'Sorközművelés, burgonyatöltögetés, talajszellőztetés és mechanikai gyommentesítés.',
-      s4Tag: 'Időszakos munkák',
-      s5Title: 'Gépi Betakarítás',
-      s5Desc: 'Kalászosok, kukorica, ipari növények és gumósok betakarítása nagyteljesítményű kombájnokkal minimális szemveszteséggel.',
-      s5Tag: 'Maximális hatékonyság',
-      s6Title: 'Technológiai Szállítás & Támogatás',
-      s6Desc: 'A termés beszállítása a szántóföldről a tárolókba, teljes logisztikai támogatás a betakarítási kampány alatt.',
-      s6Tag: 'Mezőgazdasági logisztika',
-      requestQuote: 'Kérjen árajánlatot'
+      experienceText: '1991. április 30-i megalakulása óta az AGROMEC SFÂNTU GHEORGHE SA folyamatosan támogatta a helyi gazdaságokat, alkalmazkodva a modern növénytermesztés követelményeihez.'
     },
     communications: {
       badge: 'Átláthatóság & Vállalatirányítás',
@@ -368,7 +352,7 @@ const TRANSLATIONS: Record<SupportedLang, Translations> = {
       filterAll: 'Összes Közlemény',
       filterAga: 'Közgyűlési Meghívók',
       filterReports: 'Jelentések & Mérleg',
-      filterAnnouncements: 'Általános Hírek',
+      filterAnnouncements: 'Általános Hirdetmények',
       searchPlaceholder: 'Keresés cím, év vagy kulcsszó alapján...',
       readMore: 'Teljes Közlemény Elolvasása',
       downloadPdf: 'Dokumentum Letöltése (PDF)',
@@ -384,7 +368,7 @@ const TRANSLATIONS: Record<SupportedLang, Translations> = {
     contact: {
       badge: 'Elérhetőség & Cégadatok',
       title: 'Lépjen kapcsolatba az AGROMEC SA-val',
-      subtitle: 'Készséggel állunk rendelkezésére mezőgazdasági bérmunkák, együttműködések és részvényesi ügyek kapcsán.',
+      subtitle: 'Készséggel állunk rendelkezésére mezőgazdasági együttműködések, megkeresések és részvényesi ügyek kapcsán.',
       companyName: 'AGROMEC SFANTU GHEORGHE SA',
       legalType: 'Részvénytársaság • Alapítva: 1991.04.30.',
       headquarters: 'Székhely:',
@@ -392,13 +376,13 @@ const TRANSLATIONS: Record<SupportedLang, Translations> = {
       cui: 'Adószám (CUI): RO544894',
       regCom: 'Cégjegyzékszám: J14/233/1991',
       phone: '0723 139 940',
-      email: 'contact@agromecsfgheorghe.ro',
+      email: 'agromec.sfantu.gheorghe@gmail.com',
       hours: 'Munkaprogram',
       hoursWeekdays: 'Hétfő - Péntek: 08:00 - 16:30',
       hoursSaturday: 'Szombat: 08:00 - 13:00 (kampányidőszakban)',
       hoursSunday: 'Vasárnap: Zárva',
       formTitle: 'Küldjön Üzenetet',
-      formSubtitle: 'Töltse ki az alábbi űrlapot és munkatársunk hamarosan felveszi Önnel a kapcsolatot.',
+      formSubtitle: 'Töltse ki az alábbi űrlapot és az AGROMEC vezetősége hamarosan felveszi Önnel a kapcsolatot.',
       nameLabel: 'Név / Cégnév',
       namePlaceholder: 'pl: Kovács János / Gazda Kft.',
       phoneLabel: 'Telefonszám',
@@ -406,23 +390,54 @@ const TRANSLATIONS: Record<SupportedLang, Translations> = {
       emailLabel: 'E-mail Cím',
       emailPlaceholder: 'nev@domain.hu',
       subjectLabel: 'Megkeresés Tárgya',
-      subjectOption1: 'Gépesített Mezőgazdasági Munkák (CAEN 0161)',
-      subjectOption2: 'Részvényesi Kapcsolatok / Közgyűlés',
+      subjectOption1: 'Növénytermesztést Kiegészítő Tevékenységek (CAEN 0161)',
+      subjectOption2: 'Részvényesi Kapcsolatok / Közgyűlés (AGA)',
       subjectOption3: 'Kereskedelmi Együttműködés',
       subjectOption4: 'Egyéb Témájú Megkeresés',
       messageLabel: 'Az Ön Üzenete',
-      messagePlaceholder: 'Írja le az igényeit (terület nagysága, növénykultúra, igényelt munkálatok)...',
+      messagePlaceholder: 'Írja le a megkeresés részleteit...',
       submitBtn: 'Üzenet Elküldése',
       submitting: 'Küldés folyamatban...',
-      successMessage: 'Köszönjük! Üzenetét sikeresen elküldtük az AGROMEC csapatának.',
+      successMessage: 'Köszönjük! Üzenetét sikeresen elküldtük az AGROMEC vezetőségének.',
       callDirect: 'Közvetlen hívás',
       openInMaps: 'Megnyitás Térképen / Waze',
       whatsappDirect: 'WhatsApp Üzenet'
     },
+    admin: {
+      portalTitle: 'Adminisztrációs és Publikációs Portál',
+      loginTitle: 'Vezetőségi / Adminisztrátori Belépés',
+      loginSubtitle: 'Adja meg a belépési adatokat a hivatalos közlemények közzétételéhez és kezeléséhez.',
+      emailLabel: 'Email:',
+      passLabel: 'Password:',
+      loginBtn: 'Bejelentkezés az Admin Felületre',
+      logoutBtn: 'Kijelentkezés',
+      tabCreate: 'Új Hirdetmény Közzététele',
+      tabManage: 'Hirdetmények Kezelése',
+      tabMessages: 'Beérkezett Üzenetek',
+      cloudActive: 'Felhő Adatbázis Aktív',
+      cloudSyncing: 'Felhő Szinkronizálás...',
+      fieldCategory: 'Hirdetmény Kategóriája:',
+      fieldDocNumber: 'Hivatalos Iktatószám:',
+      fieldDate: 'Közzététel Dátuma:',
+      fieldImportant: '⭐ Kiemelt / Fontos Hirdetményként megjelölés',
+      fieldTitle: 'Hirdetmény Címe:',
+      fieldContent: 'Hirdetmény Teljes Szövege:',
+      fieldSummary: 'Rövid Összefoglaló (Opcionális):',
+      fieldSignatory: 'Hivatalos Aláíró:',
+      publishBtn: 'Hirdetmény Közzététele Most',
+      tableDoc: 'Iktatószám',
+      tableDate: 'Dátum',
+      tableCategory: 'Kategória',
+      tableTitle: 'Cím',
+      tableImportant: 'Kiemelt',
+      tableActions: 'Műveletek',
+      inboxTitle: 'Kapcsolatfelvételi Űrlapról Érkezett Üzenetek',
+      inboxSubtitle: 'A weboldal látogatói által beküldött összes megkeresés.',
+      noMessages: 'Jelenleg nincs beérkezett üzenet a postafiókban.'
+    },
     footer: {
       tagline: 'Több mint 35 év szakértelem és elhivatottság a növénytermesztést segítő mezőgazdasági szolgáltatásokban (CAEN 0161) Kovászna megyében.',
       quickLinks: 'Gyorsmenü',
-      servicesList: 'Főbb Szolgáltatások',
       legalTitle: 'Cégazonosító Adatok',
       rights: 'Minden jog fenntartva.',
       cookies: 'Süti (Cookie) Szabályzat',
@@ -434,7 +449,6 @@ const TRANSLATIONS: Record<SupportedLang, Translations> = {
     nav: {
       home: 'Home',
       about: 'About Company',
-      services: 'Activity & Services',
       communications: 'Corporate Notices',
       contact: 'Contact',
       callNow: 'Call Now',
@@ -445,7 +459,6 @@ const TRANSLATIONS: Record<SupportedLang, Translations> = {
       title: 'Your Trusted Partner in',
       titleHighlight: 'Auxiliary Activities for Crop Production',
       subtitle: 'AGROMEC SFÂNTU GHEORGHE SA has provided over 35 years of high-performance mechanized agricultural services, technological support, and farm solutions in Covasna County.',
-      ctaServices: 'Discover Services',
       ctaContact: 'Contact Us',
       ctaCommunications: 'View Official Notices',
       statYears: '35+',
@@ -479,30 +492,6 @@ const TRANSLATIONS: Record<SupportedLang, Translations> = {
       val4Desc: 'Complete transparency, shareholder relations, and dependable contractual partnerships.',
       experienceText: 'Since its foundation on April 30, 1991, AGROMEC SFÂNTU GHEORGHE SA has supported local agricultural growth, constantly upgrading equipment to meet modern efficiency standards.'
     },
-    services: {
-      badge: 'Core Business CAEN 0161',
-      title: 'Mechanized Crop Production Services',
-      subtitle: 'We provide the full spectrum of mechanized agricultural services required for high yield and top quality crop production.',
-      s1Title: 'Soil Preparation & Plowing',
-      s1Desc: 'Deep plowing at optimal depth, subsoiling, disc harrowing, levelling, and precise seedbed preparation.',
-      s1Tag: 'Primary Agrotechnics',
-      s2Title: 'Mechanized Precision Seeding',
-      s2Desc: 'Calibrated seeding for autumn and spring crops: wheat, corn, potatoes, sunflower, sugar beet, rape, and forage.',
-      s2Tag: 'Precision & Density',
-      s3Title: 'Crop Protection & Fertilization',
-      s3Desc: 'Herbicide spraying, fungicide and insecticide treatments with precision boom sprayers, basal and foliar fertilization.',
-      s3Tag: 'Crop Protection',
-      s4Title: 'Mechanical Crop Cultivation',
-      s4Desc: 'Row cultivating, potato ridging, soil aeration, and mechanical weed suppression.',
-      s4Tag: 'Seasonal Works',
-      s5Title: 'Mechanized Harvesting',
-      s5Desc: 'Grain, corn, industrial crop, and tuber harvesting with high-capacity combines to minimize losses.',
-      s5Tag: 'Max Efficiency',
-      s6Title: 'Technological Transport & Support',
-      s6Desc: 'Crop transport from field to storage facilities, full logistics, and field support during harvest campaigns.',
-      s6Tag: 'Farm Logistics',
-      requestQuote: 'Request a Service Quote'
-    },
     communications: {
       badge: 'Transparency & Governance',
       title: 'Official Communications & Notices',
@@ -526,7 +515,7 @@ const TRANSLATIONS: Record<SupportedLang, Translations> = {
     contact: {
       badge: 'Contact & Company Identification',
       title: 'Contact AGROMEC SFÂNTU GHEORGHE SA',
-      subtitle: 'We are at your service for agricultural service contracts, business inquiries, and shareholder relations.',
+      subtitle: 'We are at your service for agricultural partnerships, business inquiries, and shareholder relations.',
       companyName: 'AGROMEC SFANTU GHEORGHE SA',
       legalType: 'Joint-Stock Company (S.A.) • Est. 30.04.1991',
       headquarters: 'Headquarters:',
@@ -534,13 +523,13 @@ const TRANSLATIONS: Record<SupportedLang, Translations> = {
       cui: 'Fiscal Code (CUI): RO544894',
       regCom: 'Trade Registry: J14/233/1991',
       phone: '0723 139 940',
-      email: 'contact@agromecsfgheorghe.ro',
+      email: 'agromec.sfantu.gheorghe@gmail.com',
       hours: 'Working Hours',
       hoursWeekdays: 'Monday - Friday: 08:00 - 16:30',
       hoursSaturday: 'Saturday: 08:00 - 13:00 (during peak season)',
       hoursSunday: 'Sunday: Closed',
       formTitle: 'Send Us a Message',
-      formSubtitle: 'Fill out the form below and our team will get back to you promptly.',
+      formSubtitle: 'Fill out the form below and our management team will get back to you promptly.',
       nameLabel: 'Full Name / Company Name',
       namePlaceholder: 'e.g. John Doe / Agro Enterprise',
       phoneLabel: 'Phone Number',
@@ -548,23 +537,54 @@ const TRANSLATIONS: Record<SupportedLang, Translations> = {
       emailLabel: 'Email Address',
       emailPlaceholder: 'name@domain.com',
       subjectLabel: 'Inquiry Subject',
-      subjectOption1: 'Mechanized Agricultural Services (CAEN 0161)',
+      subjectOption1: 'Auxiliary Activities for Crop Production (CAEN 0161)',
       subjectOption2: 'Shareholder Relations / AGA Info',
-      subjectOption3: 'Commercial Partnership / Fleet Rental',
+      subjectOption3: 'Commercial Partnership / Collaboration',
       subjectOption4: 'Other Inquiry',
       messageLabel: 'Your Message',
-      messagePlaceholder: 'Describe your requirements (acreage, crop type, requested field operations)...',
+      messagePlaceholder: 'Please describe the details of your inquiry...',
       submitBtn: 'Send Message',
       submitting: 'Sending...',
-      successMessage: 'Thank you! Your message has been successfully sent to AGROMEC.',
+      successMessage: 'Thank you! Your message has been successfully sent to AGROMEC management.',
       callDirect: 'Call Directly',
       openInMaps: 'Open in Google Maps / Waze',
       whatsappDirect: 'WhatsApp Message'
     },
+    admin: {
+      portalTitle: 'Administration & Publishing Portal',
+      loginTitle: 'Management / Administrator Login',
+      loginSubtitle: 'Enter your credentials to publish or manage official corporate notices.',
+      emailLabel: 'Email:',
+      passLabel: 'Password:',
+      loginBtn: 'Login to Admin Dashboard',
+      logoutBtn: 'Logout',
+      tabCreate: 'Add New Notice',
+      tabManage: 'Manage Notices',
+      tabMessages: 'Received Messages',
+      cloudActive: 'Cloud DB Active',
+      cloudSyncing: 'Cloud Syncing...',
+      fieldCategory: 'Notice Category:',
+      fieldDocNumber: 'Official Document No.:',
+      fieldDate: 'Publication Date:',
+      fieldImportant: '⭐ Mark as Important / Priority Notice',
+      fieldTitle: 'Notice Title:',
+      fieldContent: 'Full Text Content:',
+      fieldSummary: 'Short Summary (Optional):',
+      fieldSignatory: 'Official Signatory:',
+      publishBtn: 'Publish Notice Now',
+      tableDoc: 'Doc No.',
+      tableDate: 'Date',
+      tableCategory: 'Category',
+      tableTitle: 'Title',
+      tableImportant: 'Important',
+      tableActions: 'Actions',
+      inboxTitle: 'Messages Received via Contact Form',
+      inboxSubtitle: 'All inquiries submitted by visitors through the website form.',
+      noMessages: 'No messages received at this moment.'
+    },
     footer: {
-      tagline: 'Over 35 years of excellence and dedication in auxiliary activities for crop production (CAEN 0161) in Covasna County.',
+      tagline: 'Over 35 years of excellence and continuity in auxiliary activities for crop production (CAEN 0161) in Covasna County.',
       quickLinks: 'Quick Links',
-      servicesList: 'Core Services',
       legalTitle: 'Fiscal Identification',
       rights: 'All rights reserved.',
       cookies: 'Cookie Policy',
