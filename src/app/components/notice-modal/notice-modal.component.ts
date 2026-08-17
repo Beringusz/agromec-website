@@ -13,10 +13,4 @@ import { LanguageService } from '../../services/language.service';
 export class NoticeModalComponent {
   public commService = inject(CommunicationsService);
   public langService = inject(LanguageService);
-
-  printNotice() {
-    if (typeof window !== 'undefined') {
-      window.print();
-    }
-  }
 }

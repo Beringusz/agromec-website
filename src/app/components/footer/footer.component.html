@@ -1,6 +1,6 @@
 <footer class="footer">
   <div class="container">
-    <!-- Main 4-column Footer Top -->
+    <!-- Main 3-column Footer Top -->
     <div class="footer-grid">
       <!-- Col 1: Brand & Tagline -->
       <div class="footer-col brand-col">
@@ -27,36 +27,23 @@
         </div>
       </div>
 
-      <!-- Col 2: Quick Links -->
+      <!-- Col 2: Quick Links (The 3 core sections) -->
       <div class="footer-col">
         <h4 class="footer-heading">{{ langService.t().footer.quickLinks }}</h4>
         <ul class="footer-nav">
           <li><a href="#hero">{{ langService.t().nav.home }}</a></li>
           <li><a href="#about">{{ langService.t().nav.about }}</a></li>
-          <li><a href="#services">{{ langService.t().nav.services }}</a></li>
           <li><a href="#communications">{{ langService.t().nav.communications }}</a></li>
           <li><a href="#contact">{{ langService.t().nav.contact }}</a></li>
           <li>
             <button type="button" class="footer-admin-link" (click)="openAdmin()">
-              🔐 Portal Admin / Publicare
+              🔐 Portal Admin / Publicare Hirdetések
             </button>
           </li>
         </ul>
       </div>
 
-      <!-- Col 3: Services (CAEN 0161) -->
-      <div class="footer-col">
-        <h4 class="footer-heading">CAEN 0161</h4>
-        <ul class="footer-nav">
-          <li><a href="#services">Pregătirea Solului & Arături</a></li>
-          <li><a href="#services">Semănat Mecanizat de Precizie</a></li>
-          <li><a href="#services">Tratamente Fitosanitare & Fertilizare</a></li>
-          <li><a href="#services">Întreținerea Mecanică a Culturilor</a></li>
-          <li><a href="#services">Recoltare Mecanizată & Transport</a></li>
-        </ul>
-      </div>
-
-      <!-- Col 4: Identification & Contact -->
+      <!-- Col 3: Identification & Contact -->
       <div class="footer-col">
         <h4 class="footer-heading">{{ langService.t().footer.legalTitle }}</h4>
         <div class="footer-contact-details">
@@ -77,9 +64,9 @@
         © 1991 - {{ currentYear }} <strong>AGROMEC SFÂNTU GHEORGHE SA</strong>. {{ langService.t().footer.rights }}
       </div>
       <div class="footer-legal-links">
-        <a href="#about">CAEN 0161</a>
+        <a href="#about">Despre Companie (CAEN 0161)</a>
         <span>•</span>
-        <a href="#communications">Convocatoare & Rapoarte AGA</a>
+        <a href="#communications">Comunicări Oficiale</a>
         <span>•</span>
         <button type="button" class="footer-admin-inline" (click)="openAdmin()">
           Portal Conducere
