@@ -11,11 +11,17 @@ export interface ContactMessage {
   isRead: boolean;
 }
 
+// Set target recipient email for contact inquiries
+// Currently configured for testing with: tntfazakas@gmail.com
+// To switch to production, change this to: 'agromec.sfantu.gheorghe@gmail.com'
+export const RECIPIENT_EMAIL = 'tntfazakas@gmail.com';
+
 @Injectable({
   providedIn: 'root'
 })
 export class ContactMessagesService {
   private readonly STORAGE_KEY = 'agromec_contact_inbox';
+  public recipientEmail = RECIPIENT_EMAIL;
 
   public messages = signal<ContactMessage[]>([]);
 
@@ -62,6 +68,37 @@ export class ContactMessagesService {
 
     this.messages.update(list => [newMessage, ...list]);
     this.saveMessages();
+  }
+
+  /**
+   * Sends email directly to the recipient mailbox (tntfazakas@gmail.com)
+   */
+  public async sendEmailNotification(msg: { name: string; phone: string; email: string; subject: string; message: string }): Promise<boolean> {
+    try {
+      const response = await fetch(`https://formsubmit.co/ajax/${this.recipientEmail}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+          _subject: `[AGROMEC Website] Solicitare Nouă: ${msg.name} (${msg.phone})`,
+          _template: 'table',
+          _captcha: 'false',
+          'Nume / Companie': msg.name,
+          'Număr de Telefon': msg.phone,
+          'Adresă de Email': msg.email || 'Nespecificat',
+          'Tipul Solicitării': msg.subject,
+          'Mesaj Transmis': msg.message,
+          'Data Trimiterii': new Date().toLocaleString('ro-RO')
+        })
+      });
+
+      return response.ok;
+    } catch (err) {
+      console.warn('External email delivery notice (stored in admin dashboard):', err);
+      return false;
+    }
   }
 
   public deleteMessage(id: number): void {

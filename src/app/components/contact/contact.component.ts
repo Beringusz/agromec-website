@@ -27,7 +27,7 @@ export class ContactComponent {
   public isSubmitting = signal<boolean>(false);
   public isSubmitted = signal<boolean>(false);
 
-  onSubmit(): void {
+  async onSubmit(): Promise<void> {
     if (this.contactForm.invalid) {
       this.contactForm.markAllAsTouched();
       return;
@@ -37,26 +37,30 @@ export class ContactComponent {
 
     const val = this.contactForm.value;
 
-    // Store message into inbox
-    this.messageService.addMessage({
+    const messageData = {
       name: val.name,
       phone: val.phone,
       email: val.email || 'Nespecificat',
       subject: val.subject,
       message: val.message
+    };
+
+    // 1. Store message into Admin Inbox
+    this.messageService.addMessage(messageData);
+
+    // 2. Dispatch real email notification to tntfazakas@gmail.com
+    await this.messageService.sendEmailNotification(messageData);
+
+    this.isSubmitting.set(false);
+    this.isSubmitted.set(true);
+    
+    this.contactForm.reset({
+      subject: 'Servicii Agricole Mecanizate (CAEN 0161)'
     });
 
+    // Clear success notification after 8 seconds
     setTimeout(() => {
-      this.isSubmitting.set(false);
-      this.isSubmitted.set(true);
-      this.contactForm.reset({
-        subject: 'Servicii Agricole Mecanizate (CAEN 0161)'
-      });
-
-      // Clear success notification after 7 seconds
-      setTimeout(() => {
-        this.isSubmitted.set(false);
-      }, 7000);
-    }, 600);
+      this.isSubmitted.set(false);
+    }, 8000);
   }
 }
