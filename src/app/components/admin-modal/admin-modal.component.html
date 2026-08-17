@@ -62,34 +62,50 @@
 
       <div class="login-hint-card">
         <strong>Credențiale implicite prestabilite:</strong><br>
-        Email: <code>admin@agromecsfgheorghe.ro</code> | Parolă: <code>agromec2026</code>
+        Email: <code>admin@agromecsfgheorghe.ro</code> | Password: <code>agromec2026</code>
       </div>
 
       <form [formGroup]="loginForm" (ngSubmit)="onLoginSubmit()" class="login-form">
+        <!-- Email Field -->
         <div class="form-group">
-          <label class="form-label" for="login-email">Email / Utilizator:</label>
+          <label class="form-label" for="login-email">
+            <svg class="label-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+              <polyline points="22,6 12,13 2,6"></polyline>
+            </svg>
+            Email:
+          </label>
           <input 
             id="login-email"
-            type="text" 
+            type="email" 
             class="form-control" 
             formControlName="email" 
             placeholder="admin@agromecsfgheorghe.ro"
+            autocomplete="email"
           />
         </div>
 
+        <!-- Password Field -->
         <div class="form-group">
-          <label class="form-label" for="login-pass">Parolă de Acces:</label>
+          <label class="form-label" for="login-pass">
+            <svg class="label-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+              <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+            </svg>
+            Password:
+          </label>
           <input 
             id="login-pass"
             type="password" 
             class="form-control" 
             formControlName="password" 
             placeholder="••••••••"
+            autocomplete="current-password"
           />
         </div>
 
         <button type="submit" class="btn btn-primary btn-submit-login">
-          <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <svg class="icon-btn-login" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"></path>
             <polyline points="10 17 15 12 10 7"></polyline>
             <line x1="15" y1="12" x2="3" y2="12"></line>
