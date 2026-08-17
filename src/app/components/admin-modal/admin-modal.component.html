@@ -166,84 +166,97 @@
 
       <!-- SUB-VIEW A: CREATE / PUBLISH ANNOUNCEMENT FORM -->
       <div *ngIf="activeAdminTab() === 'create'" class="create-announcement-panel">
+        
+        <!-- Error Alert if validation fails -->
+        <div *ngIf="publishError()" class="alert-error">
+          <svg class="icon-alert" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10"></circle>
+            <line x1="12" y1="8" x2="12" y2="12"></line>
+            <line x1="12" y1="16" x2="12.01" y2="16"></line>
+          </svg>
+          <span>{{ publishError() }}</span>
+        </div>
+
         <form [formGroup]="announcementForm" (ngSubmit)="onPublishSubmit()" class="admin-form">
+          <!-- Title (Required) -->
+          <div class="form-group">
+            <label class="form-label" for="comm-title-ro">
+              Titlu Anunț / Comunicat: <span class="required">*</span>
+            </label>
+            <input 
+              id="comm-title-ro"
+              type="text" 
+              class="form-control form-control-lg" 
+              formControlName="titleRo" 
+              placeholder="ex: Convocator Adunarea Generală a Acționarilor AGROMEC SA..."
+              [class.is-invalid]="announcementForm.get('titleRo')?.touched && announcementForm.get('titleRo')?.invalid"
+            />
+          </div>
+
+          <!-- Content (Required) -->
+          <div class="form-group">
+            <label class="form-label" for="comm-content-ro">
+              Conținut Text Anunț (Textul complet): <span class="required">*</span>
+            </label>
+            <textarea 
+              id="comm-content-ro"
+              rows="4" 
+              class="form-control" 
+              formControlName="contentRo"
+              placeholder="Scrieți aici textul hirdetés-nek vagy a comunicat-nak..."
+              [class.is-invalid]="announcementForm.get('contentRo')?.touched && announcementForm.get('contentRo')?.invalid"
+            ></textarea>
+          </div>
+
+          <!-- Category & Doc Number -->
           <div class="form-grid-2">
-            <!-- Category -->
             <div class="form-group">
-              <label class="form-label" for="comm-cat">Categorie Comunicat: <span class="required">*</span></label>
+              <label class="form-label" for="comm-cat">Categorie Comunicat:</label>
               <select id="comm-cat" class="form-control" formControlName="category">
+                <option value="anunturi">Anunț General / Campanie Agricolă</option>
                 <option value="aga">Convocator AGA (Adunarea Generală a Acționarilor)</option>
                 <option value="rapoarte">Raport Financiar / Bilanț Contabil</option>
-                <option value="anunturi">Anunț General / Campanie Agricolă</option>
               </select>
             </div>
 
-            <!-- Doc Number -->
             <div class="form-group">
-              <label class="form-label" for="comm-doc">Număr Document Oficial: <span class="required">*</span></label>
-              <input id="comm-doc" type="text" class="form-control" formControlName="docNumber" placeholder="ex: CONV-AGA-2026/03" />
+              <label class="form-label" for="comm-doc">Număr Document Oficial:</label>
+              <input id="comm-doc" type="text" class="form-control" formControlName="docNumber" />
             </div>
           </div>
 
           <!-- Date and Important Flag -->
           <div class="form-grid-2">
             <div class="form-group">
-              <label class="form-label" for="comm-date">Data Publicării: <span class="required">*</span></label>
-              <input id="comm-date" type="text" class="form-control" formControlName="date" placeholder="ex: 17 August 2026" />
+              <label class="form-label" for="comm-date">Data Publicării:</label>
+              <input id="comm-date" type="text" class="form-control" formControlName="date" />
             </div>
 
             <div class="form-group checkbox-group">
               <label class="checkbox-label">
                 <input type="checkbox" formControlName="isImportant" />
-                <span>Marchează ca Anunț Prioritar / Important (evidențiat cu galben)</span>
+                <span>⭐ Marchează ca Anunț Important / Evidențiat</span>
               </label>
             </div>
           </div>
 
-          <!-- Title in Romanian -->
+          <!-- Optional Summary -->
           <div class="form-group">
-            <label class="form-label" for="comm-title-ro">Titlu Comunicat (Română): <span class="required">*</span></label>
-            <input 
-              id="comm-title-ro"
-              type="text" 
-              class="form-control" 
-              formControlName="titleRo" 
-              placeholder="ex: Convocator Adunarea Generală a Acționarilor AGROMEC SA"
-              [class.is-invalid]="announcementForm.get('titleRo')?.touched && announcementForm.get('titleRo')?.invalid"
-            />
-          </div>
-
-          <!-- Summary in Romanian -->
-          <div class="form-group">
-            <label class="form-label" for="comm-summary-ro">Rezumat Scurt (Română): <span class="required">*</span></label>
+            <label class="form-label" for="comm-summary-ro">
+              Rezumat Scurt <small class="text-muted">(Opțional - se completează automat)</small>:
+            </label>
             <textarea 
               id="comm-summary-ro"
               rows="2" 
               class="form-control" 
               formControlName="summaryRo"
-              placeholder="Rezumatul vizibil pe cardul de prezentare..."
-              [class.is-invalid]="announcementForm.get('summaryRo')?.touched && announcementForm.get('summaryRo')?.invalid"
+              placeholder="Opțional: scurt rezumat de 1-2 rânduri..."
             ></textarea>
           </div>
 
-          <!-- Full Content in Romanian -->
+          <!-- Signatory -->
           <div class="form-group">
-            <label class="form-label" for="comm-content-ro">
-              Conținut Text Complet (Română) - <small>Fiecare paragraf pe un rând nou</small>: <span class="required">*</span>
-            </label>
-            <textarea 
-              id="comm-content-ro"
-              rows="5" 
-              class="form-control" 
-              formControlName="contentRo"
-              placeholder="Introduceți textul complet al comunicatului, punctele de pe ordinea de zi, datele legale etc."
-              [class.is-invalid]="announcementForm.get('contentRo')?.touched && announcementForm.get('contentRo')?.invalid"
-            ></textarea>
-          </div>
-
-          <!-- Signatory in Romanian -->
-          <div class="form-group">
-            <label class="form-label" for="comm-sign-ro">Semnatar Oficial: <span class="required">*</span></label>
+            <label class="form-label" for="comm-sign-ro">Semnatar Oficial:</label>
             <input 
               id="comm-sign-ro"
               type="text" 
@@ -255,11 +268,11 @@
 
           <!-- Action buttons -->
           <div class="form-submit-row">
-            <button type="submit" class="btn btn-primary btn-lg">
+            <button type="submit" class="btn btn-primary btn-lg btn-publish-action">
               <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <polyline points="20 6 9 17 4 12"></polyline>
               </svg>
-              <span>Publică Comunicatul Acum</span>
+              <span>Publică Comunicatul Acum / Közzététel</span>
             </button>
           </div>
         </form>

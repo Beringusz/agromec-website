@@ -23,6 +23,7 @@ export class AdminModalComponent {
   public activeAdminTab = signal<'create' | 'list' | 'messages'>('create');
   public loginError = signal<string>('');
   public publishSuccess = signal<string>('');
+  public publishError = signal<string>('');
 
   // Login form
   public loginForm: FormGroup = this.fb.group({
@@ -30,21 +31,21 @@ export class AdminModalComponent {
     password: ['', [Validators.required]]
   });
 
-  // New announcement form
+  // New announcement form - flexible and user-friendly
   public announcementForm: FormGroup = this.fb.group({
-    titleRo: ['', [Validators.required, Validators.minLength(5)]],
+    titleRo: ['', [Validators.required, Validators.minLength(3)]],
     titleHu: [''],
     titleEn: [''],
     category: ['anunturi', [Validators.required]],
     docNumber: ['ANUNT-' + new Date().getFullYear() + '/' + Math.floor(Math.random() * 90 + 10), [Validators.required]],
     date: [this.formatCurrentDate(), [Validators.required]],
-    summaryRo: ['', [Validators.required, Validators.minLength(10)]],
+    summaryRo: [''],
     summaryHu: [''],
     summaryEn: [''],
-    contentRo: ['', [Validators.required, Validators.minLength(20)]],
+    contentRo: ['', [Validators.required, Validators.minLength(5)]],
     contentHu: [''],
     contentEn: [''],
-    signatoryRo: ['Consiliul de Administrație • AGROMEC SFÂNTU GHEORGHE SA', [Validators.required]],
+    signatoryRo: ['Consiliul de Administrație • AGROMEC SFÂNTU GHEORGHE SA'],
     signatoryHu: ['Igazgatótanács • AGROMEC SFÂNTU GHEORGHE SA'],
     signatoryEn: ['Board of Directors • AGROMEC SFÂNTU GHEORGHE SA'],
     isImportant: [true]
@@ -54,6 +55,12 @@ export class AdminModalComponent {
     this.loginForm.valueChanges.subscribe(() => {
       if (this.loginError()) {
         this.loginError.set('');
+      }
+    });
+
+    this.announcementForm.valueChanges.subscribe(() => {
+      if (this.publishError()) {
+        this.publishError.set('');
       }
     });
   }
@@ -98,12 +105,24 @@ export class AdminModalComponent {
   }
 
   onPublishSubmit(): void {
-    if (this.announcementForm.invalid) {
-      this.announcementForm.markAllAsTouched();
+    this.publishError.set('');
+
+    const val = this.announcementForm.value;
+
+    if (!val.titleRo || val.titleRo.trim().length === 0) {
+      this.announcementForm.get('titleRo')?.markAsTouched();
+      const lang = this.langService.currentLang();
+      this.publishError.set(lang === 'hu' ? 'Kérjük adja meg a hirdetés címét.' : 'Vă rugăm să introduceți titlul comunicatului.');
       return;
     }
 
-    const val = this.announcementForm.value;
+    if (!val.contentRo || val.contentRo.trim().length === 0) {
+      this.announcementForm.get('contentRo')?.markAsTouched();
+      const lang = this.langService.currentLang();
+      this.publishError.set(lang === 'hu' ? 'Kérjük adja meg a hirdetés szöveges tartalmát.' : 'Vă rugăm să introduceți textul comunicatului.');
+      return;
+    }
+
     const currentYear = new Date().getFullYear();
 
     // Map category labels
@@ -123,22 +142,34 @@ export class AdminModalComponent {
     const paragraphsHu = val.contentHu ? splitParagraphs(val.contentHu) : paragraphsRo;
     const paragraphsEn = val.contentEn ? splitParagraphs(val.contentEn) : paragraphsRo;
 
+    // Generate summary automatically if not filled
+    const cleanContent = val.contentRo.replace(/\n+/g, ' ').trim();
+    const autoSummary = cleanContent.length > 130 ? cleanContent.slice(0, 130) + '...' : cleanContent;
+
+    const summaryRo = val.summaryRo && val.summaryRo.trim() ? val.summaryRo.trim() : autoSummary;
+    const summaryHu = val.summaryHu && val.summaryHu.trim() ? val.summaryHu.trim() : summaryRo;
+    const summaryEn = val.summaryEn && val.summaryEn.trim() ? val.summaryEn.trim() : summaryRo;
+
+    const docNum = val.docNumber && val.docNumber.trim() ? val.docNumber.trim() : 'ANUNT-' + currentYear + '/' + Math.floor(Math.random() * 90 + 10);
+    const dateStr = val.date && val.date.trim() ? val.date.trim() : this.formatCurrentDate();
+    const signatory = val.signatoryRo && val.signatoryRo.trim() ? val.signatoryRo.trim() : 'Consiliul de Administrație • AGROMEC SFÂNTU GHEORGHE SA';
+
     const newItem = {
-      date: val.date,
+      date: dateStr,
       year: currentYear,
-      category: val.category as 'aga' | 'rapoarte' | 'anunturi',
+      category: (val.category || 'anunturi') as 'aga' | 'rapoarte' | 'anunturi',
       isImportant: !!val.isImportant,
-      docNumber: val.docNumber,
+      docNumber: docNum,
       title: {
-        ro: val.titleRo,
-        hu: val.titleHu || val.titleRo,
-        en: val.titleEn || val.titleRo
+        ro: val.titleRo.trim(),
+        hu: val.titleHu?.trim() || val.titleRo.trim(),
+        en: val.titleEn?.trim() || val.titleRo.trim()
       },
       categoryLabel: catLabels[val.category] || catLabels['anunturi'],
       summary: {
-        ro: val.summaryRo,
-        hu: val.summaryHu || val.summaryRo,
-        en: val.summaryEn || val.summaryRo
+        ro: summaryRo,
+        hu: summaryHu,
+        en: summaryEn
       },
       content: {
         ro: paragraphsRo,
@@ -146,16 +177,18 @@ export class AdminModalComponent {
         en: paragraphsEn
       },
       signatory: {
-        ro: val.signatoryRo,
-        hu: val.signatoryHu || val.signatoryRo,
-        en: val.signatoryEn || val.signatoryRo
+        ro: signatory,
+        hu: val.signatoryHu?.trim() || signatory,
+        en: val.signatoryEn?.trim() || signatory
       }
     };
 
     this.commService.addCommunication(newItem);
-    this.publishSuccess.set('Comunicatul a fost publicat cu succes pe site!');
+    
+    const lang = this.langService.currentLang();
+    this.publishSuccess.set(lang === 'hu' ? 'A hirdetés sikeresen közzétéve a weboldalon!' : 'Comunicatul a fost publicat cu succes pe site!');
 
-    // Reset form with new doc number
+    // Reset form with fresh doc number
     this.announcementForm.reset({
       category: 'anunturi',
       docNumber: 'ANUNT-' + currentYear + '/' + Math.floor(Math.random() * 90 + 10),
@@ -163,13 +196,16 @@ export class AdminModalComponent {
       signatoryRo: 'Consiliul de Administrație • AGROMEC SFÂNTU GHEORGHE SA',
       signatoryHu: 'Igazgatótanács • AGROMEC SFÂNTU GHEORGHE SA',
       signatoryEn: 'Board of Directors • AGROMEC SFÂNTU GHEORGHE SA',
-      isImportant: false
+      isImportant: false,
+      titleRo: '',
+      summaryRo: '',
+      contentRo: ''
     });
 
     setTimeout(() => {
       this.publishSuccess.set('');
       this.activeAdminTab.set('list');
-    }, 1800);
+    }, 1500);
   }
 
   deleteItem(id: number, title: string): void {
@@ -192,6 +228,7 @@ export class AdminModalComponent {
 
   closeModal(): void {
     this.loginError.set('');
+    this.publishError.set('');
     this.loginForm.reset({ email: '', password: '' });
     this.authService.closeDashboard();
     this.authService.closeLoginModal();
