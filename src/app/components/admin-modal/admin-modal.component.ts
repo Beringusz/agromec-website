@@ -24,8 +24,8 @@ export class AdminModalComponent {
 
   // Login form
   public loginForm: FormGroup = this.fb.group({
-    email: ['admin@agromecsfgheorghe.ro', [Validators.required]],
-    password: ['agromec2026', [Validators.required]]
+    email: ['', [Validators.required]],
+    password: ['', [Validators.required]]
   });
 
   // New announcement form
