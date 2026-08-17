@@ -36,6 +36,11 @@
           <li><a href="#services">{{ langService.t().nav.services }}</a></li>
           <li><a href="#communications">{{ langService.t().nav.communications }}</a></li>
           <li><a href="#contact">{{ langService.t().nav.contact }}</a></li>
+          <li>
+            <button type="button" class="footer-admin-link" (click)="openAdmin()">
+              🔐 Portal Admin / Publicare
+            </button>
+          </li>
         </ul>
       </div>
 
@@ -76,7 +81,9 @@
         <span>•</span>
         <a href="#communications">Convocatoare & Rapoarte AGA</a>
         <span>•</span>
-        <a href="#contact">Str. Recoltei nr. 3</a>
+        <button type="button" class="footer-admin-inline" (click)="openAdmin()">
+          Portal Conducere
+        </button>
       </div>
     </div>
   </div>

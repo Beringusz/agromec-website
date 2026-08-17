@@ -50,6 +50,24 @@
   color: rgba(255, 255, 255, 0.3);
 }
 
+.topbar-admin-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  color: #fde047;
+  font-size: 0.78rem;
+  font-weight: 700;
+  background-color: rgba(255, 255, 255, 0.12);
+  padding: 0.2rem 0.6rem;
+  border-radius: var(--radius-full);
+  transition: all var(--transition-fast);
+}
+
+.topbar-admin-btn:hover {
+  background-color: rgba(255, 255, 255, 0.22);
+  color: var(--white);
+}
+
 /* Language Switcher */
 .lang-switcher {
   display: inline-flex;

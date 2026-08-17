@@ -15,6 +15,26 @@
       <p class="section-desc">{{ langService.t().communications.subtitle }}</p>
     </div>
 
+    <!-- Admin Quick Action Toolbar -->
+    <div class="admin-quick-bar">
+      <div *ngIf="authService.isLoggedIn()" class="admin-logged-status">
+        <span class="admin-badge">Admin Conectat</span>
+        <button type="button" class="btn btn-accent btn-sm" (click)="openAdminStudio()">
+          <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="12" y1="5" x2="12" y2="19"></line>
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+          </svg>
+          <span>+ Adaugă / Gestionează Comunicări</span>
+        </button>
+      </div>
+
+      <div *ngIf="!authService.isLoggedIn()" class="admin-guest-trigger">
+        <button type="button" class="btn-guest-admin" (click)="openAdminStudio()">
+          🔒 Portal Conducere / Publicare Hirdetések (Autentificare Admin)
+        </button>
+      </div>
+    </div>
+
     <!-- Control Bar (Filter tabs + Live Search) -->
     <div class="comm-controls">
       <!-- Category Tabs -->
@@ -82,7 +102,7 @@
         <div class="comm-card-header">
           <div class="comm-meta-top">
             <span class="comm-category-pill" [attr.data-cat]="item.category">
-              {{ item.categoryLabel[langService.currentLang()] }}
+              {{ item.categoryLabel[langService.currentLang()] || item.categoryLabel.ro }}
             </span>
             <span class="comm-doc-badge">{{ item.docNumber }}</span>
           </div>
@@ -97,8 +117,8 @@
           </div>
         </div>
 
-        <h3 class="comm-card-title">{{ item.title[langService.currentLang()] }}</h3>
-        <p class="comm-card-summary">{{ item.summary[langService.currentLang()] }}</p>
+        <h3 class="comm-card-title">{{ item.title[langService.currentLang()] || item.title.ro }}</h3>
+        <p class="comm-card-summary">{{ item.summary[langService.currentLang()] || item.summary.ro }}</p>
 
         <div class="comm-card-footer">
           <div class="comm-sign-hint">
@@ -106,7 +126,7 @@
               <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
               <circle cx="12" cy="7" r="4"></circle>
             </svg>
-            <span>{{ item.signatory[langService.currentLang()] }}</span>
+            <span>{{ item.signatory[langService.currentLang()] || item.signatory.ro }}</span>
           </div>
 
           <div class="comm-card-actions">

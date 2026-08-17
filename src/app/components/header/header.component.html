@@ -20,6 +20,18 @@
         </span>
       </div>
       <div class="topbar-right">
+        <!-- Admin Portal Trigger Button -->
+        <button type="button" class="topbar-admin-btn" (click)="openAdmin()">
+          <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+          </svg>
+          <span *ngIf="!authService.isLoggedIn()">Portal Admin</span>
+          <span *ngIf="authService.isLoggedIn()">Admin (Conectat)</span>
+        </button>
+
+        <span class="topbar-divider">|</span>
+
+        <!-- Language switcher -->
         <div class="lang-switcher">
           <button 
             type="button"
@@ -58,7 +70,6 @@
       <a href="#hero" class="brand" (click)="closeMobileMenu()">
         <div class="brand-logo-icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <!-- Tractor / Agromechanic leaf badge icon -->
             <path d="M7 17m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0"></path>
             <path d="M17 17m-4 0a4 4 0 1 0 8 0a4 4 0 1 0 -8 0"></path>
             <path d="M7 15h4v-5h3l3 4h2"></path>
@@ -136,6 +147,9 @@
         <a href="#services" class="mobile-link" (click)="closeMobileMenu()">{{ langService.t().nav.services }}</a>
         <a href="#communications" class="mobile-link" (click)="closeMobileMenu()">{{ langService.t().nav.communications }}</a>
         <a href="#contact" class="mobile-link" (click)="closeMobileMenu()">{{ langService.t().nav.contact }}</a>
+        <button type="button" class="mobile-link text-left" (click)="openAdmin()" style="text-align: left; background: none; border: none; cursor: pointer;">
+          ⚙️ Portal Admin / Publicare Hirdetések
+        </button>
       </nav>
 
       <div class="mobile-footer-info">

@@ -2,6 +2,45 @@
   background-color: var(--white);
 }
 
+.admin-quick-bar {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 1.5rem;
+}
+
+.admin-logged-status {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  background-color: var(--primary-50);
+  border: 1px solid var(--primary-200);
+  padding: 0.4rem 0.85rem;
+  border-radius: var(--radius-lg);
+}
+
+.admin-badge {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--primary-800);
+  background-color: var(--primary-100);
+  padding: 0.2rem 0.5rem;
+  border-radius: var(--radius-full);
+}
+
+.btn-guest-admin {
+  font-size: 0.82rem;
+  color: var(--slate-500);
+  background: var(--slate-100);
+  padding: 0.4rem 0.85rem;
+  border-radius: var(--radius-full);
+  transition: all var(--transition-fast);
+}
+
+.btn-guest-admin:hover {
+  background-color: var(--slate-200);
+  color: var(--slate-800);
+}
+
 .comm-controls {
   display: flex;
   justify-content: space-between;

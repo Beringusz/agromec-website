@@ -1,0 +1,302 @@
+<!-- Admin Modal Dialog (Login or Dashboard) -->
+<div 
+  class="admin-backdrop" 
+  *ngIf="authService.isLoginModalOpen() || authService.isAdminDashboardOpen()" 
+  (click)="closeModal()">
+  
+  <div class="admin-dialog" (click)="$event.stopPropagation()">
+    <!-- Header of Admin Modal -->
+    <div class="admin-modal-header">
+      <div class="admin-header-left">
+        <div class="admin-shield-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+          </svg>
+        </div>
+        <div>
+          <h3 class="admin-title">Portal Administrare & Publicare</h3>
+          <span class="admin-subtitle">AGROMEC SFÂNTU GHEORGHE SA</span>
+        </div>
+      </div>
+
+      <div class="admin-header-actions">
+        <div *ngIf="authService.isLoggedIn()" class="admin-user-pill">
+          <span class="user-status-dot"></span>
+          <span>{{ authService.currentUser()?.name }}</span>
+        </div>
+
+        <button *ngIf="authService.isLoggedIn()" type="button" class="btn btn-outline-danger btn-sm" (click)="authService.logout()">
+          <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+            <polyline points="16 17 21 12 16 7"></polyline>
+            <line x1="21" y1="12" x2="9" y2="12"></line>
+          </svg>
+          <span>Deconectare</span>
+        </button>
+
+        <button type="button" class="admin-close-btn" (click)="closeModal()" aria-label="Inchide">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- VIEW 1: LOGIN FORM (If not logged in) -->
+    <div *ngIf="!authService.isLoggedIn()" class="admin-body-login">
+      <div class="login-intro">
+        <div class="login-icon-box">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+            <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+          </svg>
+        </div>
+        <h4>Autentificare Conducere / Administrator</h4>
+        <p>Introduceți datele de acces pentru a publica sau gestiona comunicările oficiale.</p>
+      </div>
+
+      <div *ngIf="loginError()" class="alert-error">
+        {{ loginError() }}
+      </div>
+
+      <div class="login-hint-card">
+        <strong>Credențiale implicite prestabilite:</strong><br>
+        Email: <code>admin@agromecsfgheorghe.ro</code> | Parolă: <code>agromec2026</code>
+      </div>
+
+      <form [formGroup]="loginForm" (ngSubmit)="onLoginSubmit()" class="login-form">
+        <div class="form-group">
+          <label class="form-label" for="login-email">Email / Utilizator:</label>
+          <input 
+            id="login-email"
+            type="text" 
+            class="form-control" 
+            formControlName="email" 
+            placeholder="admin@agromecsfgheorghe.ro"
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="login-pass">Parolă de Acces:</label>
+          <input 
+            id="login-pass"
+            type="password" 
+            class="form-control" 
+            formControlName="password" 
+            placeholder="••••••••"
+          />
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-submit-login">
+          <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"></path>
+            <polyline points="10 17 15 12 10 7"></polyline>
+            <line x1="15" y1="12" x2="3" y2="12"></line>
+          </svg>
+          <span>Conectare la Panoul de Administrare</span>
+        </button>
+      </form>
+    </div>
+
+    <!-- VIEW 2: ADMIN DASHBOARD (When logged in) -->
+    <div *ngIf="authService.isLoggedIn()" class="admin-body-dashboard">
+      <!-- Admin Navigation Sub-tabs -->
+      <div class="admin-subtabs">
+        <button 
+          type="button" 
+          class="admin-tab-btn" 
+          [class.active]="activeAdminTab() === 'create'" 
+          (click)="activeAdminTab.set('create')">
+          <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="12" y1="5" x2="12" y2="19"></line>
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+          </svg>
+          <span>Adaugă Comunicat Nou</span>
+        </button>
+
+        <button 
+          type="button" 
+          class="admin-tab-btn" 
+          [class.active]="activeAdminTab() === 'list'" 
+          (click)="activeAdminTab.set('list')">
+          <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="8" y1="6" x2="21" y2="6"></line>
+            <line x1="8" y1="12" x2="21" y2="12"></line>
+            <line x1="8" y1="18" x2="21" y2="18"></line>
+            <line x1="3" y1="6" x2="3.01" y2="6"></line>
+            <line x1="3" y1="12" x2="3.01" y2="12"></line>
+            <line x1="3" y1="18" x2="3.01" y2="18"></line>
+          </svg>
+          <span>Gestionare Comunicări ({{ commService.getRawItems().length }})</span>
+        </button>
+      </div>
+
+      <!-- Success Alert -->
+      <div *ngIf="publishSuccess()" class="alert-success">
+        <svg class="icon-alert" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+          <polyline points="22 4 12 14.01 9 11.01"></polyline>
+        </svg>
+        <span>{{ publishSuccess() }}</span>
+      </div>
+
+      <!-- SUB-VIEW A: CREATE / PUBLISH ANNOUNCEMENT FORM -->
+      <div *ngIf="activeAdminTab() === 'create'" class="create-announcement-panel">
+        <form [formGroup]="announcementForm" (ngSubmit)="onPublishSubmit()" class="admin-form">
+          <div class="form-grid-2">
+            <!-- Category -->
+            <div class="form-group">
+              <label class="form-label" for="comm-cat">Categorie Comunicat: <span class="required">*</span></label>
+              <select id="comm-cat" class="form-control" formControlName="category">
+                <option value="aga">Convocator AGA (Adunarea Generală a Acționarilor)</option>
+                <option value="rapoarte">Raport Financiar / Bilanț Contabil</option>
+                <option value="anunturi">Anunț General / Campanie Agricolă</option>
+              </select>
+            </div>
+
+            <!-- Doc Number -->
+            <div class="form-group">
+              <label class="form-label" for="comm-doc">Număr Document Oficial: <span class="required">*</span></label>
+              <input id="comm-doc" type="text" class="form-control" formControlName="docNumber" placeholder="ex: CONV-AGA-2026/03" />
+            </div>
+          </div>
+
+          <!-- Date and Important Flag -->
+          <div class="form-grid-2">
+            <div class="form-group">
+              <label class="form-label" for="comm-date">Data Publicării: <span class="required">*</span></label>
+              <input id="comm-date" type="text" class="form-control" formControlName="date" placeholder="ex: 17 August 2026" />
+            </div>
+
+            <div class="form-group checkbox-group">
+              <label class="checkbox-label">
+                <input type="checkbox" formControlName="isImportant" />
+                <span>Marchează ca Anunț Prioritar / Important (evidențiat cu galben)</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- Title in Romanian -->
+          <div class="form-group">
+            <label class="form-label" for="comm-title-ro">Titlu Comunicat (Română): <span class="required">*</span></label>
+            <input 
+              id="comm-title-ro"
+              type="text" 
+              class="form-control" 
+              formControlName="titleRo" 
+              placeholder="ex: Convocator Adunarea Generală a Acționarilor AGROMEC SA"
+              [class.is-invalid]="announcementForm.get('titleRo')?.touched && announcementForm.get('titleRo')?.invalid"
+            />
+          </div>
+
+          <!-- Summary in Romanian -->
+          <div class="form-group">
+            <label class="form-label" for="comm-summary-ro">Rezumat Scurt (Română): <span class="required">*</span></label>
+            <textarea 
+              id="comm-summary-ro"
+              rows="2" 
+              class="form-control" 
+              formControlName="summaryRo"
+              placeholder="Rezumatul vizibil pe cardul de prezentare..."
+              [class.is-invalid]="announcementForm.get('summaryRo')?.touched && announcementForm.get('summaryRo')?.invalid"
+            ></textarea>
+          </div>
+
+          <!-- Full Content in Romanian -->
+          <div class="form-group">
+            <label class="form-label" for="comm-content-ro">
+              Conținut Text Complet (Română) - <small>Fiecare paragraf pe un rând nou</small>: <span class="required">*</span>
+            </label>
+            <textarea 
+              id="comm-content-ro"
+              rows="5" 
+              class="form-control" 
+              formControlName="contentRo"
+              placeholder="Introduceți textul complet al comunicatului, punctele de pe ordinea de zi, datele legale etc."
+              [class.is-invalid]="announcementForm.get('contentRo')?.touched && announcementForm.get('contentRo')?.invalid"
+            ></textarea>
+          </div>
+
+          <!-- Signatory in Romanian -->
+          <div class="form-group">
+            <label class="form-label" for="comm-sign-ro">Semnatar Oficial: <span class="required">*</span></label>
+            <input 
+              id="comm-sign-ro"
+              type="text" 
+              class="form-control" 
+              formControlName="signatoryRo" 
+              placeholder="Consiliul de Administrație • AGROMEC SFÂNTU GHEORGHE SA"
+            />
+          </div>
+
+          <!-- Action buttons -->
+          <div class="form-submit-row">
+            <button type="submit" class="btn btn-primary btn-lg">
+              <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg>
+              <span>Publică Comunicatul Acum</span>
+            </button>
+          </div>
+        </form>
+      </div>
+
+      <!-- SUB-VIEW B: MANAGE & DELETE EXISTING ANNOUNCEMENTS -->
+      <div *ngIf="activeAdminTab() === 'list'" class="manage-announcements-panel">
+        <div class="manage-top-bar">
+          <div>
+            <h4>Toate Comunicările Active pe Site</h4>
+            <p>Puteți șterge sau reseta comunicările afișate în timp real.</p>
+          </div>
+          <button type="button" class="btn btn-outline-danger btn-sm" (click)="resetAllDefaults()">
+            Resetează la Anunțurile Implicite
+          </button>
+        </div>
+
+        <div class="table-responsive">
+          <table class="admin-table">
+            <thead>
+              <tr>
+                <th>Nr. Doc</th>
+                <th>Dată</th>
+                <th>Categorie</th>
+                <th>Titlu</th>
+                <th>Important</th>
+                <th>Acțiuni</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of commService.getRawItems()">
+                <td><code>{{ item.docNumber }}</code></td>
+                <td>{{ item.date }}</td>
+                <td>
+                  <span class="badge-cat" [attr.data-cat]="item.category">
+                    {{ item.categoryLabel.ro }}
+                  </span>
+                </td>
+                <td class="table-title-cell">
+                  <strong>{{ item.title.ro }}</strong>
+                </td>
+                <td>
+                  <span *ngIf="item.isImportant" class="badge-star">⭐ Da</span>
+                  <span *ngIf="!item.isImportant" class="badge-no">Nu</span>
+                </td>
+                <td>
+                  <div class="table-actions">
+                    <button type="button" class="btn-table-view" (click)="commService.openDetailModal(item)" title="Previzualizare">
+                      👁️
+                    </button>
+                    <button type="button" class="btn-table-delete" (click)="deleteItem(item.id, item.title.ro)" title="Șterge">
+                      🗑️
+                    </button>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

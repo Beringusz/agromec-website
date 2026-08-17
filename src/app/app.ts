@@ -8,6 +8,7 @@ import { CommunicationsComponent } from './components/communications/communicati
 import { ContactComponent } from './components/contact/contact.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { NoticeModalComponent } from './components/notice-modal/notice-modal.component';
+import { AdminModalComponent } from './components/admin-modal/admin-modal.component';
 
 @Component({
   selector: 'app-root',
@@ -21,7 +22,8 @@ import { NoticeModalComponent } from './components/notice-modal/notice-modal.com
     CommunicationsComponent,
     ContactComponent,
     FooterComponent,
-    NoticeModalComponent
+    NoticeModalComponent,
+    AdminModalComponent
   ],
   templateUrl: './app.html',
   styleUrl: './app.css'

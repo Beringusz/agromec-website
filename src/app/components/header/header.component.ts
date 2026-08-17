@@ -1,6 +1,7 @@
 import { Component, inject, signal, HostListener } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LanguageService, SupportedLang } from '../../services/language.service';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-header',
@@ -11,6 +12,7 @@ import { LanguageService, SupportedLang } from '../../services/language.service'
 })
 export class HeaderComponent {
   public langService = inject(LanguageService);
+  public authService = inject(AuthService);
   public isScrolled = signal<boolean>(false);
   public mobileMenuOpen = signal<boolean>(false);
 
@@ -31,5 +33,10 @@ export class HeaderComponent {
 
   changeLang(lang: SupportedLang) {
     this.langService.setLanguage(lang);
+  }
+
+  openAdmin(): void {
+    this.authService.openLoginModal();
+    this.closeMobileMenu();
   }
 }

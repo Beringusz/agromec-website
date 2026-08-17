@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { CommunicationsService, CommunicationItem } from '../../services/communications.service';
 import { LanguageService } from '../../services/language.service';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-communications',
@@ -14,6 +15,7 @@ import { LanguageService } from '../../services/language.service';
 export class CommunicationsComponent {
   public commService = inject(CommunicationsService);
   public langService = inject(LanguageService);
+  public authService = inject(AuthService);
 
   onSearchChange(event: Event) {
     const input = event.target as HTMLInputElement;
@@ -26,5 +28,9 @@ export class CommunicationsComponent {
 
   viewItem(item: CommunicationItem) {
     this.commService.openDetailModal(item);
+  }
+
+  openAdminStudio() {
+    this.authService.openLoginModal();
   }
 }
