@@ -48,7 +48,7 @@ export class ContactComponent {
     // 1. Store message into Admin Inbox
     this.messageService.addMessage(messageData);
 
-    // 2. Dispatch real email notification to tntfazakas@gmail.com
+    // 2. Dispatch real email notification to agromec.sfantu.gheorghe@gmail.com
     await this.messageService.sendEmailNotification(messageData);
 
     this.isSubmitting.set(false);

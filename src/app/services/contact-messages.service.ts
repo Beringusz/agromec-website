@@ -11,10 +11,8 @@ export interface ContactMessage {
   isRead: boolean;
 }
 
-// Set target recipient email for contact inquiries
-// Currently configured for testing with: tntfazakas@gmail.com
-// To switch to production, change this to: 'agromec.sfantu.gheorghe@gmail.com'
-export const RECIPIENT_EMAIL = 'tntfazakas@gmail.com';
+// Target recipient email for contact inquiries
+export const RECIPIENT_EMAIL = 'agromec.sfantu.gheorghe@gmail.com';
 
 @Injectable({
   providedIn: 'root'
@@ -71,7 +69,7 @@ export class ContactMessagesService {
   }
 
   /**
-   * Sends email directly to the recipient mailbox (tntfazakas@gmail.com)
+   * Sends email directly to the official recipient mailbox (agromec.sfantu.gheorghe@gmail.com)
    */
   public async sendEmailNotification(msg: { name: string; phone: string; email: string; subject: string; message: string }): Promise<boolean> {
     try {

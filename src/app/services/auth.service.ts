@@ -41,11 +41,17 @@ export class AuthService {
     const cleanEmail = email.trim().toLowerCase();
     const cleanPass = pass.trim();
 
-    // Default admin credentials for AGROMEC management
-    if ((cleanEmail === 'admin' || cleanEmail === 'admin@agromecsfgheorghe.ro') && cleanPass === 'agromec2026') {
+    // Recognized admin logins
+    const validEmails = [
+      'agromec.sfantu.gheorghe@gmail.com',
+      'admin@agromecsfgheorghe.ro',
+      'admin'
+    ];
+
+    if (validEmails.includes(cleanEmail) && cleanPass === 'agromec2026') {
       const user: AdminUser = {
         name: 'Administrator AGROMEC',
-        email: 'admin@agromecsfgheorghe.ro',
+        email: 'agromec.sfantu.gheorghe@gmail.com',
         role: 'Administrator Conducere'
       };
 
