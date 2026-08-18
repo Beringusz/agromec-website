@@ -69,18 +69,18 @@
           <img src="/images/fleet.jpg" alt="Parcul de utilaje AGROMEC Sfantu Gheorghe SA" class="about-fleet-img" />
           <div class="image-floating-badge">
             <span class="badge-num">1991 - 2026</span>
-            <span class="badge-txt">Tradiție & Tehnică Agricolă</span>
+            <span class="badge-txt">Tradiție & Continuitate</span>
           </div>
         </div>
       </div>
 
       <div class="about-text-col">
-        <h3 class="about-subheading">Un pilon de stabilitate tehnologică pentru fermierii din Covasna</h3>
+        <h3 class="about-subheading">Prezentare Generală & Istoric</h3>
         <p class="about-p">
-          <strong>AGROMEC SFANTU GHEORGHE SA</strong> este o companie înființată la <strong>30 Aprilie 1991</strong>, având sediul în <strong>Municipiul Sfântu Gheorghe, Județul Covasna, Str. Recoltei nr. 3</strong>.
+          <strong>AGROMEC SFANTU GHEORGHE SA</strong> este o societate comercială pe acțiuni înființată la <strong>30 Aprilie 1991</strong>, având sediul în <strong>Municipiul Sfântu Gheorghe, Județul Covasna, Str. Recoltei nr. 3</strong>.
         </p>
         <p class="about-p">
-          Activitatea principală a companiei este reprezentată de <strong>activități auxiliare pentru producția vegetală (Cod CAEN 0161)</strong>. De-a lungul celor peste trei decenii de la fondare, am acumulat o experiență de neegalat în asigurarea asistenței tehnologice și mecanizate pentru toate etapele ciclului de cultivare.
+          Activitatea principală a companiei este reprezentată de <strong>activități auxiliare pentru producția vegetală (Cod CAEN 0161)</strong>. De-a lungul celor peste 35 de ani de activitate neîntreruptă, societatea s-a remarcat prin stabilitate, conformitate legislativă și relații durabile cu partenerii și acționarii.
         </p>
         
         <div class="caen-card">
@@ -105,51 +105,81 @@
       </div>
     </div>
 
-    <!-- Values Grid -->
-    <div class="values-section">
-      <h3 class="values-main-title">{{ langService.t().about.valuesTitle }}</h3>
-      
-      <div class="values-grid">
-        <div class="value-card">
-          <div class="value-icon-box">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
-            </svg>
+    <!-- Proiect de Divizare Section (Replaces Pilonii Nostri de Functionare) -->
+    <div id="divizare" class="divizare-section">
+      <div class="divizare-card-container">
+        <div class="divizare-header-row">
+          <div class="divizare-header-content">
+            <span class="divizare-badge">
+              <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                <polyline points="14 2 14 8 20 8"></polyline>
+                <line x1="16" y1="13" x2="8" y2="13"></line>
+                <line x1="16" y1="17" x2="8" y2="17"></line>
+              </svg>
+              {{ langService.t().about.divizareBadge }}
+            </span>
+            <h3 class="divizare-main-title">{{ langService.t().about.divizareTitle }}</h3>
+            <p class="divizare-subtitle">{{ langService.t().about.divizareSubtitle }}</p>
           </div>
-          <h4>{{ langService.t().about.val1Title }}</h4>
-          <p>{{ langService.t().about.val1Desc }}</p>
+          
+          <div class="divizare-action-box">
+            <a href="#communications" class="btn btn-accent btn-lg">
+              <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                <polyline points="14 2 14 8 20 8"></polyline>
+              </svg>
+              <span>{{ langService.t().about.divizareCta }}</span>
+            </a>
+          </div>
         </div>
 
-        <div class="value-card">
-          <div class="value-icon-box">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
-              <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
-            </svg>
+        <div class="divizare-grid">
+          <!-- Card 1 -->
+          <div class="divizare-item-card">
+            <div class="divizare-icon-box">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+              </svg>
+            </div>
+            <h4>{{ langService.t().about.div1Title }}</h4>
+            <p>{{ langService.t().about.div1Desc }}</p>
           </div>
-          <h4>{{ langService.t().about.val2Title }}</h4>
-          <p>{{ langService.t().about.val2Desc }}</p>
-        </div>
 
-        <div class="value-card">
-          <div class="value-icon-box">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <circle cx="12" cy="12" r="10"></circle>
-              <polyline points="12 6 12 12 16 14"></polyline>
-            </svg>
+          <!-- Card 2 -->
+          <div class="divizare-item-card">
+            <div class="divizare-icon-box">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                <polyline points="9 22 9 12 15 12 15 22"></polyline>
+              </svg>
+            </div>
+            <h4>{{ langService.t().about.div2Title }}</h4>
+            <p>{{ langService.t().about.div2Desc }}</p>
           </div>
-          <h4>{{ langService.t().about.val3Title }}</h4>
-          <p>{{ langService.t().about.val3Desc }}</p>
-        </div>
 
-        <div class="value-card">
-          <div class="value-icon-box">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
-            </svg>
+          <!-- Card 3 -->
+          <div class="divizare-item-card">
+            <div class="divizare-icon-box">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"></circle>
+                <polyline points="12 6 12 12 16 14"></polyline>
+              </svg>
+            </div>
+            <h4>{{ langService.t().about.div3Title }}</h4>
+            <p>{{ langService.t().about.div3Desc }}</p>
           </div>
-          <h4>{{ langService.t().about.val4Title }}</h4>
-          <p>{{ langService.t().about.val4Desc }}</p>
+
+          <!-- Card 4 -->
+          <div class="divizare-item-card">
+            <div class="divizare-icon-box">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+              </svg>
+            </div>
+            <h4>{{ langService.t().about.div4Title }}</h4>
+            <p>{{ langService.t().about.div4Desc }}</p>
+          </div>
         </div>
       </div>
     </div>

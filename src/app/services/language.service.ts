@@ -14,7 +14,6 @@ export interface Translations {
   hero: {
     badge: string;
     title: string;
-    titleHighlight: string;
     subtitle: string;
     ctaContact: string;
     ctaCommunications: string;
@@ -38,16 +37,19 @@ export interface Translations {
     caenTitle: string;
     caenCode: string;
     caenDescription: string;
-    valuesTitle: string;
-    val1Title: string;
-    val1Desc: string;
-    val2Title: string;
-    val2Desc: string;
-    val3Title: string;
-    val3Desc: string;
-    val4Title: string;
-    val4Desc: string;
     experienceText: string;
+    divizareBadge: string;
+    divizareTitle: string;
+    divizareSubtitle: string;
+    div1Title: string;
+    div1Desc: string;
+    div2Title: string;
+    div2Desc: string;
+    div3Title: string;
+    div3Desc: string;
+    div4Title: string;
+    div4Desc: string;
+    divizareCta: string;
   };
   communications: {
     badge: string;
@@ -162,9 +164,8 @@ const TRANSLATIONS: Record<SupportedLang, Translations> = {
     },
     hero: {
       badge: 'Înființată la 30 Aprilie 1991 • Sfântu Gheorghe',
-      title: 'Partenerul dumneavoastră de încredere în',
-      titleHighlight: 'Activități Auxiliare pentru Producția Vegetală',
-      subtitle: 'AGROMEC SFÂNTU GHEORGHE SA oferă de peste 35 de ani servicii mecanizate complete, asistență tehnologică și soluții dedicate fermierilor și asociațiilor agricole din județul Covasna.',
+      title: 'AGROMEC SFÂNTU GHEORGHE SA',
+      subtitle: 'Companie înființată la 30 Aprilie 1991, cu sediul în Municipiul Sfântu Gheorghe, Județul Covasna, Str. Recoltei nr. 3. Activitatea principală este reprezentată de activități auxiliare pentru producția vegetală (CAEN 0161).',
       ctaContact: 'Contactează-ne',
       ctaCommunications: 'Vezi Comunicările Oficiale',
       statYears: '35+',
@@ -187,21 +188,24 @@ const TRANSLATIONS: Record<SupportedLang, Translations> = {
       caenTitle: 'Obiectul Principal de Activitate',
       caenCode: 'Cod CAEN 0161',
       caenDescription: 'Activități auxiliare pentru producția vegetală: pregătirea solului, arături, discuiri, semănat mecanizat, tratamente de protecție a culturilor, recoltare mecanizată și operațiuni tehnologice post-recoltare.',
-      valuesTitle: 'Pilonii Noștri de Funcționare',
-      val1Title: 'Experiență Vastă',
-      val1Desc: 'Personal tehnic calificat și mecanizatori cu decenii de practică pe terenurile din Covasna.',
-      val2Title: 'Parc Mecanizat Specializat',
-      val2Desc: 'Tractoare, combine și agregate agricole performante, pregătite pentru intervenții prompte.',
-      val3Title: 'Promptitudine & Rigoare',
-      val3Desc: 'Respectarea strictă a ferestrelor optime agrotehnice pentru fiecare cultură în parte.',
-      val4Title: 'Transparență & Guvernanță',
-      val4Desc: 'Transparență decizională totală, comunicare deschisă cu acționarii și partenerii contractuali.',
-      experienceText: 'De la înființarea la 30 Aprilie 1991, AGROMEC SFÂNTU GHEORGHE SA a susținut dezvoltarea exploatațiilor agricole locale, adaptându-se permanent la cerințele moderne de eficiență și randament în producția vegetală.'
+      experienceText: 'De la înființarea la 30 Aprilie 1991, AGROMEC SFÂNTU GHEORGHE SA a susținut dezvoltarea exploatațiilor agricole locale, adaptându-se permanent la cerințele moderne de eficiență și randament în producția vegetală.',
+      divizareBadge: 'Conformitate & Legea nr. 31/1990',
+      divizareTitle: 'Proiect de Divizare',
+      divizareSubtitle: 'Informare oficială privind derularea procedurii de divizare a societății AGROMEC SFÂNTU GHEORGHE SA conform legislației în vigoare.',
+      div1Title: 'Temei Legal & Notificări Oficiale',
+      div1Desc: 'Proiectul de divizare este întocmit de organele statutare ale societății în conformitate strictă cu Legea nr. 31/1990 privind societățile comerciale, republicată.',
+      div2Title: 'Consultarea Documentației la Sediu',
+      div2Desc: 'Proiectul de divizare, situațiile financiare de divizare și rapoartele de expertiză sunt puse la dispoziția acționarilor la sediul social din Sfântu Gheorghe, Str. Recoltei nr. 3.',
+      div3Title: 'Drepturile Acționarilor și Creditorilor',
+      div3Desc: 'Acționarii și creditorii societății își pot exercita drepturile de informare și opoziție în termenele prevăzute de dispozițiile legale în vigoare.',
+      div4Title: 'Publicare & Convocatoare AGA',
+      div4Desc: 'Toate convocatoarele AGA, hotărârile acționarilor și comunicatele oficiale referitoare la divizare sunt publicate în secțiunea Comunicări Oficiale.',
+      divizareCta: 'Vezi Comunicările privind Divizarea'
     },
     communications: {
       badge: 'Transparență & Guvernanță Corporativă',
       title: 'Comunicări & Anunțuri Oficiale',
-      subtitle: 'Convocatoare ale Adunării Generale a Acționarilor (AGA), situații financiare, rapoarte de gestiune și informări publice.',
+      subtitle: 'Convocatoare ale Adunării Generale a Acționarilor (AGA), proiecte de divizare, situații financiare, rapoarte de gestiune și informări publice.',
       filterAll: 'Toate Comunicările',
       filterAga: 'Convocatoare AGA',
       filterReports: 'Rapoarte & Bilanț',
@@ -227,7 +231,7 @@ const TRANSLATIONS: Record<SupportedLang, Translations> = {
       headquarters: 'Sediul Social:',
       address: 'Str. Recoltei nr. 3, Sfântu Gheorghe, Jud. Covasna, România',
       cui: 'CUI: RO544894',
-      regCom: 'Nr. Reg. Com.: J14/233/1991',
+      regCom: 'Nr. Reg. Com.: J14/160/1991',
       phone: '0723 139 940',
       email: 'agromec.sfantu.gheorghe@gmail.com',
       hours: 'Program de Lucru',
@@ -243,8 +247,8 @@ const TRANSLATIONS: Record<SupportedLang, Translations> = {
       emailLabel: 'Adresă de Email',
       emailPlaceholder: 'adresa@domeniu.ro',
       subjectLabel: 'Tipul Solicitării',
-      subjectOption1: 'Servicii Auxiliare Producție Vegetală (CAEN 0161)',
-      subjectOption2: 'Relația cu Acționarii / Informații AGA',
+      subjectOption1: 'Proiect de Divizare & Relația cu Acționarii',
+      subjectOption2: 'Activități Auxiliare Producție Vegetală (CAEN 0161)',
       subjectOption3: 'Parteneriat Comercial / Colaborare',
       subjectOption4: 'Altă Solicitare',
       messageLabel: 'Mesajul Dumneavoastră',
@@ -309,9 +313,8 @@ const TRANSLATIONS: Record<SupportedLang, Translations> = {
     },
     hero: {
       badge: 'Alapítva: 1991. április 30. • Sepsiszentgyörgy',
-      title: 'Az Ön megbízható partnere a',
-      titleHighlight: 'Növénytermesztést Kiegészítő Tevékenységekben',
-      subtitle: 'Az AGROMEC SFÂNTU GHEORGHE SA több mint 35 éve nyújt gépesített mezőgazdasági szolgáltatásokat és technológiai támogatást Kovászna megyei gazdáknak.',
+      title: 'AGROMEC SFÂNTU GHEORGHE SA',
+      subtitle: '1991. április 30-án alapított sepsiszentgyörgyi vállalat (Kovászna megye, Str. Recoltei 3.). Fő tevékenységi köre a növénytermesztést kiegészítő tevékenységek (CAEN 0161).',
       ctaContact: 'Kapcsolatfelvétel',
       ctaCommunications: 'Hivatalos Közlemények',
       statYears: '35+',
@@ -334,21 +337,24 @@ const TRANSLATIONS: Record<SupportedLang, Translations> = {
       caenTitle: 'Fő Tevékenységi Kör',
       caenCode: 'CAEN 0161 Kód',
       caenDescription: 'Növénytermesztést kiegészítő tevékenységek: talajelőkészítés, szántás, tárcsázás, gépi vetés, növényvédelmi kezelések, gépi betakarítás és betakarítás utáni munkálatok.',
-      valuesTitle: 'Alapértékeink',
-      val1Title: 'Kiterjedt Szakértelem',
-      val1Desc: 'Szakképzett műszaki csapat és évtizedes tapasztalattal rendelkező gépkezelők.',
-      val2Title: 'Korszerű Géppark',
-      val2Desc: 'Traktorok, kombájnok és speciális mezőgazdasági munkaeszközök a gyors munkavégzésért.',
-      val3Title: 'Pontosság & Megbízhatóság',
-      val3Desc: 'Az agrotechnikai határidők szigorú betartása minden egyes növénykultúra esetében.',
-      val4Title: 'Átláthatóság & Vezetés',
-      val4Desc: 'Teljes nyitottság a részvényesek és a szerződéses partnerek felé.',
-      experienceText: '1991. április 30-i megalakulása óta az AGROMEC SFÂNTU GHEORGHE SA folyamatosan támogatta a helyi gazdaságokat, alkalmazkodva a modern növénytermesztés követelményeihez.'
+      experienceText: '1991. április 30-i megalakulása óta az AGROMEC SFÂNTU GHEORGHE SA folyamatosan támogatta a helyi gazdaságokat, alkalmazkodva a modern növénytermesztés követelményeihez.',
+      divizareBadge: 'Jogszabályi Megfelelőség • 31/1990-es törvény',
+      divizareTitle: 'Szétválási Terv (Proiect de Divizare)',
+      divizareSubtitle: 'Hivatalos tájékoztató az AGROMEC SFÂNTU GHEORGHE SA szétválási eljárásáról a hatályos jogszabályoknak megfelelően.',
+      div1Title: 'Jogi Alap & Hivatalos Értesítések',
+      div1Desc: 'A szétválási terv a gazdasági társaságokról szóló újraközölt 31/1990-es törvény előírásaival teljes összhangban készült.',
+      div2Title: 'Dokumentáció Megtekintése a Székhelyen',
+      div2Desc: 'A szétválási terv, a kapcsolódó pénzügyi kimutatások és szakértői beszámolók a részvényesek rendelkezésére állnak a sepsiszentgyörgyi székhelyen (Str. Recoltei 3.).',
+      div3Title: 'Részvényesi & Hitelezői Jogok',
+      div3Desc: 'A társaság részvényesei és hitelezői a törvényben meghatározott határidőn belül élhetnek tájékozódási és felszólamlási jogaikkal.',
+      div4Title: 'Közzététel & Közgyűlési Határozatok',
+      div4Desc: 'A szétválással kapcsolatos összes közgyűlési meghívó (AGA), határozat és hivatalos közlemény a Hivatalos Közlemények menüpontban érhető el.',
+      divizareCta: 'Szétválási Közlemények Megtekintése'
     },
     communications: {
       badge: 'Átláthatóság & Vállalatirányítás',
       title: 'Hivatalos Közlemények & Hirdetmények',
-      subtitle: 'Közgyűlési meghívók (AGA), pénzügyi kimutatások, vezetőségi jelentések és nyilvános tájékoztatók.',
+      subtitle: 'Közgyűlési meghívók (AGA), szétválási tervek, pénzügyi kimutatások, vezetőségi jelentések és nyilvános tájékoztatók.',
       filterAll: 'Összes Közlemény',
       filterAga: 'Közgyűlési Meghívók',
       filterReports: 'Jelentések & Mérleg',
@@ -373,8 +379,8 @@ const TRANSLATIONS: Record<SupportedLang, Translations> = {
       legalType: 'Részvénytársaság • Alapítva: 1991.04.30.',
       headquarters: 'Székhely:',
       address: 'Str. Recoltei (Aratás u.) 3. sz., Sepsiszentgyörgy, Kovászna megye, Románia',
-      cui: 'Adószám (CUI): RO544894',
-      regCom: 'Cégjegyzékszám: J14/233/1991',
+      cui: 'CUI: RO544894',
+      regCom: 'Nr. Reg. Com.: J14/160/1991',
       phone: '0723 139 940',
       email: 'agromec.sfantu.gheorghe@gmail.com',
       hours: 'Munkaprogram',
@@ -390,8 +396,8 @@ const TRANSLATIONS: Record<SupportedLang, Translations> = {
       emailLabel: 'E-mail Cím',
       emailPlaceholder: 'nev@domain.hu',
       subjectLabel: 'Megkeresés Tárgya',
-      subjectOption1: 'Növénytermesztést Kiegészítő Tevékenységek (CAEN 0161)',
-      subjectOption2: 'Részvényesi Kapcsolatok / Közgyűlés (AGA)',
+      subjectOption1: 'Szétválási Terv & Részvényesi Kapcsolatok',
+      subjectOption2: 'Növénytermesztést Kiegészítő Tevékenységek (CAEN 0161)',
       subjectOption3: 'Kereskedelmi Együttműködés',
       subjectOption4: 'Egyéb Témájú Megkeresés',
       messageLabel: 'Az Ön Üzenete',
@@ -436,7 +442,7 @@ const TRANSLATIONS: Record<SupportedLang, Translations> = {
       noMessages: 'Jelenleg nincs beérkezett üzenet a postafiókban.'
     },
     footer: {
-      tagline: 'Több mint 35 év szakértelem és elhivatottság a növénytermesztést segítő mezőgazdasági szolgáltatásokban (CAEN 0161) Kovászna megyében.',
+      tagline: 'Peste 35 de ani de excelență și continuitate în activități auxiliare pentru producția vegetală (CAEN 0161) în județul Covasna.',
       quickLinks: 'Gyorsmenü',
       legalTitle: 'Cégazonosító Adatok',
       rights: 'Minden jog fenntartva.',
@@ -456,9 +462,8 @@ const TRANSLATIONS: Record<SupportedLang, Translations> = {
     },
     hero: {
       badge: 'Established April 30, 1991 • Sfântu Gheorghe',
-      title: 'Your Trusted Partner in',
-      titleHighlight: 'Auxiliary Activities for Crop Production',
-      subtitle: 'AGROMEC SFÂNTU GHEORGHE SA has provided over 35 years of high-performance mechanized agricultural services, technological support, and farm solutions in Covasna County.',
+      title: 'AGROMEC SFÂNTU GHEORGHE SA',
+      subtitle: 'Company established on April 30, 1991, headquartered in Sfântu Gheorghe, Covasna County, Str. Recoltei no. 3. Primary activity: auxiliary activities for crop production (CAEN 0161).',
       ctaContact: 'Contact Us',
       ctaCommunications: 'View Official Notices',
       statYears: '35+',
@@ -481,21 +486,24 @@ const TRANSLATIONS: Record<SupportedLang, Translations> = {
       caenTitle: 'Core Business Activity',
       caenCode: 'CAEN Code 0161',
       caenDescription: 'Auxiliary activities for crop production: soil preparation, deep plowing, harrowing, mechanized precision seeding, crop protection treatments, mechanized harvesting, and post-harvest operations.',
-      valuesTitle: 'Our Core Pillars',
-      val1Title: 'Extensive Expertise',
-      val1Desc: 'Skilled technical operators and agronomists with decades of experience on local terrain.',
-      val2Title: 'Modern Machinery Fleet',
-      val2Desc: 'Heavy-duty tractors, harvesters, and specialized implements ready for fast deployment.',
-      val3Title: 'Punctuality & Precision',
-      val3Desc: 'Strict compliance with optimal agrotechnical windows for each specific crop.',
-      val4Title: 'Corporate Governance',
-      val4Desc: 'Complete transparency, shareholder relations, and dependable contractual partnerships.',
-      experienceText: 'Since its foundation on April 30, 1991, AGROMEC SFÂNTU GHEORGHE SA has supported local agricultural growth, constantly upgrading equipment to meet modern efficiency standards.'
+      experienceText: 'Since its foundation on April 30, 1991, AGROMEC SFÂNTU GHEORGHE SA has supported local agricultural growth, constantly upgrading equipment to meet modern efficiency standards.',
+      divizareBadge: 'Legal Disclosures & Corporate Governance',
+      divizareTitle: 'Project of Demerger / Division',
+      divizareSubtitle: 'Official corporate disclosure regarding the demerger proceedings of AGROMEC SFÂNTU GHEORGHE SA pursuant to applicable company law.',
+      div1Title: 'Legal Foundation & Official Notices',
+      div1Desc: 'The demerger project is prepared by the statutory management in strict compliance with Romanian Company Law no. 31/1990, republished.',
+      div2Title: 'Inspection of Documents at Headquarters',
+      div2Desc: 'The demerger project, financial statements, and expert reports are available for shareholder review at the registered office in Sfântu Gheorghe, Str. Recoltei no. 3.',
+      div3Title: 'Shareholder & Creditor Rights',
+      div3Desc: 'Shareholders and creditors may exercise their statutory rights of information and opposition within the legally established deadlines.',
+      div4Title: 'AGA Resolutions & Corporate Notices',
+      div4Desc: 'All General Meetings notices, resolutions, and official updates regarding the division are published in the Official Notices section.',
+      divizareCta: 'View Demerger Notices'
     },
     communications: {
       badge: 'Transparency & Governance',
       title: 'Official Communications & Notices',
-      subtitle: 'General Shareholders Meeting (AGA) notices, financial statements, management reports, and official corporate announcements.',
+      subtitle: 'General Shareholders Meeting (AGA) notices, demerger projects, financial statements, management reports, and official corporate announcements.',
       filterAll: 'All Notices',
       filterAga: 'Shareholder AGA Notices',
       filterReports: 'Reports & Balance Sheets',
@@ -520,8 +528,8 @@ const TRANSLATIONS: Record<SupportedLang, Translations> = {
       legalType: 'Joint-Stock Company (S.A.) • Est. 30.04.1991',
       headquarters: 'Headquarters:',
       address: 'Str. Recoltei no. 3, Sfântu Gheorghe, Covasna County, Romania',
-      cui: 'Fiscal Code (CUI): RO544894',
-      regCom: 'Trade Registry: J14/233/1991',
+      cui: 'CUI: RO544894',
+      regCom: 'Nr. Reg. Com.: J14/160/1991',
       phone: '0723 139 940',
       email: 'agromec.sfantu.gheorghe@gmail.com',
       hours: 'Working Hours',
@@ -537,8 +545,8 @@ const TRANSLATIONS: Record<SupportedLang, Translations> = {
       emailLabel: 'Email Address',
       emailPlaceholder: 'name@domain.com',
       subjectLabel: 'Inquiry Subject',
-      subjectOption1: 'Auxiliary Activities for Crop Production (CAEN 0161)',
-      subjectOption2: 'Shareholder Relations / AGA Info',
+      subjectOption1: 'Demerger Project & Shareholder Relations',
+      subjectOption2: 'Auxiliary Activities for Crop Production (CAEN 0161)',
       subjectOption3: 'Commercial Partnership / Collaboration',
       subjectOption4: 'Other Inquiry',
       messageLabel: 'Your Message',
@@ -551,45 +559,45 @@ const TRANSLATIONS: Record<SupportedLang, Translations> = {
       whatsappDirect: 'WhatsApp Message'
     },
     admin: {
-      portalTitle: 'Administration & Publishing Portal',
-      loginTitle: 'Management / Administrator Login',
-      loginSubtitle: 'Enter your credentials to publish or manage official corporate notices.',
+      portalTitle: 'Portal Administrare & Publicare',
+      loginTitle: 'Autentificare Conducere / Administrator',
+      loginSubtitle: 'Introduceți datele de acces pentru a publica sau gestiona comunicările oficiale.',
       emailLabel: 'Email:',
       passLabel: 'Password:',
-      loginBtn: 'Login to Admin Dashboard',
-      logoutBtn: 'Logout',
-      tabCreate: 'Add New Notice',
-      tabManage: 'Manage Notices',
-      tabMessages: 'Received Messages',
-      cloudActive: 'Cloud DB Active',
-      cloudSyncing: 'Cloud Syncing...',
-      fieldCategory: 'Notice Category:',
-      fieldDocNumber: 'Official Document No.:',
-      fieldDate: 'Publication Date:',
-      fieldImportant: '⭐ Mark as Important / Priority Notice',
-      fieldTitle: 'Notice Title:',
-      fieldContent: 'Full Text Content:',
-      fieldSummary: 'Short Summary (Optional):',
-      fieldSignatory: 'Official Signatory:',
-      publishBtn: 'Publish Notice Now',
-      tableDoc: 'Doc No.',
-      tableDate: 'Date',
-      tableCategory: 'Category',
-      tableTitle: 'Title',
+      loginBtn: 'Conectare la Panoul de Administrare',
+      logoutBtn: 'Deconectare',
+      tabCreate: 'Adaugă Comunicat Nou',
+      tabManage: 'Gestionare Comunicări',
+      tabMessages: 'Mesaje Primite',
+      cloudActive: 'Cloud DB Activ',
+      cloudSyncing: 'Sincronizare Cloud...',
+      fieldCategory: 'Categorie Comunicat:',
+      fieldDocNumber: 'Număr Document Oficial:',
+      fieldDate: 'Data Publicării:',
+      fieldImportant: 'Marchează ca Anunț Important / Evidențiat',
+      fieldTitle: 'Titlu Anunț / Comunicat:',
+      fieldContent: 'Conținut Text Anunț (Textul complet):',
+      fieldSummary: 'Rezumat Scurt (Opțional):',
+      fieldSignatory: 'Semnatar Oficial:',
+      publishBtn: 'Publică Comunicatul Acum',
+      tableDoc: 'Nr. Doc',
+      tableDate: 'Dată',
+      tableCategory: 'Categorie',
+      tableTitle: 'Titlu',
       tableImportant: 'Important',
-      tableActions: 'Actions',
-      inboxTitle: 'Messages Received via Contact Form',
-      inboxSubtitle: 'All inquiries submitted by visitors through the website form.',
-      noMessages: 'No messages received at this moment.'
+      tableActions: 'Acțiuni',
+      inboxTitle: 'Mesaje Primite de pe Formularul de Contact',
+      inboxSubtitle: 'Toate solicitările transmise de vizitatori prin formularul de pe site.',
+      noMessages: 'Nu există mesaje primite în acest moment.'
     },
     footer: {
-      tagline: 'Over 35 years of excellence and continuity in auxiliary activities for crop production (CAEN 0161) in Covasna County.',
-      quickLinks: 'Quick Links',
-      legalTitle: 'Fiscal Identification',
-      rights: 'All rights reserved.',
-      cookies: 'Cookie Policy',
-      privacy: 'Privacy Policy',
-      terms: 'Terms & Conditions'
+      tagline: 'Peste 35 de ani de excelență și continuitate în activități auxiliare pentru producția vegetală (CAEN 0161) în județul Covasna.',
+      quickLinks: 'Navigare Rapidă',
+      legalTitle: 'Date de Identificare Fiscală',
+      rights: 'Toate drepturile rezervate.',
+      cookies: 'Politica de Cookie-uri',
+      privacy: 'Politica de Confidențialitate',
+      terms: 'Termeni și Condiții'
     }
   }
 };

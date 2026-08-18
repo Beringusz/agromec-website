@@ -137,16 +137,18 @@
 }
 
 .fiscal-badge {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
   background-color: var(--slate-100);
-  color: var(--slate-800);
-  font-family: monospace;
-  font-size: 0.85rem;
+  border: 1px solid var(--slate-300);
+  color: var(--slate-900);
+  font-family: var(--font-heading), monospace;
+  font-size: 0.88rem;
   font-weight: 700;
-  padding: 0.2rem 0.5rem;
-  border-radius: var(--radius-sm);
-  margin-right: 0.4rem;
-  margin-top: 0.2rem;
+  padding: 0.3rem 0.65rem;
+  border-radius: var(--radius-md);
+  margin-right: 0.5rem;
+  margin-top: 0.25rem;
 }
 
 .quick-contact-actions {

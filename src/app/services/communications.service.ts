@@ -41,7 +41,7 @@ const DEFAULT_ITEMS: CommunicationItem[] = [
     },
     content: {
       ro: [
-        'Consiliul de Administrație al societății AGROMEC SFÂNTU GHEORGHE SA, cu sediul în municipiul Sfântu Gheorghe, Str. Recoltei nr. 3, județul Covasna, CUI RO544894, J14/233/1991, convoacă Adunarea Generală Ordinară a Acționarilor (AGOA) pentru data de 15.09.2026, ora 10:00, la sediul societății.',
+        'Consiliul de Administrație al societății AGROMEC SFÂNTU GHEORGHE SA, cu sediul în municipiul Sfântu Gheorghe, Str. Recoltei nr. 3, județul Covasna, CUI RO544894, J14/160/1991, convoacă Adunarea Generală Ordinară a Acționarilor (AGOA) pentru data de 15.09.2026, ora 10:00, la sediul societății.',
         'Ordinea de zi propusă:',
         '1. Aprobarea situațiilor financiare anuale și a raportului de gestiune pe semestrul I 2026.',
         '2. Prezentarea planului de investiții în retehnologizarea utilajelor pentru activități auxiliare producției vegetale (CAEN 0161).',
@@ -50,7 +50,7 @@ const DEFAULT_ITEMS: CommunicationItem[] = [
         'Documentele și materialele informative referitoare la ordinea de zi pot fi consultate de acționari la sediul societății începând cu data de 20 August 2026, în zilele lucrătoare, între orele 09:00 - 15:00.'
       ],
       hu: [
-        'Az AGROMEC SFÂNTU GHEORGHE SA Igazgatótanácsa (székhely: Sepsiszentgyörgy, Str. Recoltei 3., Kovászna megye, CUI: RO544894, Cégjegyzékszám: J14/233/1991) ezennel összehívja a Rendes Részvényesi Közgyűlést (AGOA) 2026. szeptember 15-én 10:00 órára a társaság székhelyére.',
+        'Az AGROMEC SFÂNTU GHEORGHE SA Igazgatótanácsa (székhely: Sepsiszentgyörgy, Str. Recoltei 3., Kovászna megye, CUI: RO544894, Cégjegyzékszám: J14/160/1991) ezennel összehívja a Rendes Részvényesi Közgyűlést (AGOA) 2026. szeptember 15-én 10:00 órára a társaság székhelyére.',
         'Javasolt napirendi pontok:',
         '1. A 2026. I. félévi pénzügyi jelentések és vezetőségi beszámoló elfogadása.',
         '2. Mezőgazdasági géppark korszerűsítésére és növénytermesztési szolgáltatásokra (CAEN 0161) vonatkozó beruházási terv bemutatása.',
@@ -59,7 +59,7 @@ const DEFAULT_ITEMS: CommunicationItem[] = [
         'A napirendhez kapcsolódó dokumentáció a részvényesek számára 2026. augusztus 20-tól megtekinthető a társaság székhelyén munkanapokon 09:00 és 15:00 óra között.'
       ],
       en: [
-        'The Board of Directors of AGROMEC SFÂNTU GHEORGHE SA, registered in Sfântu Gheorghe, Str. Recoltei no. 3, Covasna County, Fiscal Code RO544894, Reg. J14/233/1991, hereby convenes the Ordinary General Meeting of Shareholders (AGOA) on September 15, 2026, at 10:00 AM at the company headquarters.',
+        'The Board of Directors of AGROMEC SFÂNTU GHEORGHE SA, registered in Sfântu Gheorghe, Str. Recoltei no. 3, Covasna County, Fiscal Code RO544894, Reg. J14/160/1991, hereby convenes the Ordinary General Meeting of Shareholders (AGOA) on September 15, 2026, at 10:00 AM at the company headquarters.',
         'Proposed Agenda:',
         '1. Approval of H1 2026 financial statements and management activity report.',
         '2. Presentation of the investment program for modernizing agricultural machinery dedicated to crop production auxiliary services (CAEN 0161).',
