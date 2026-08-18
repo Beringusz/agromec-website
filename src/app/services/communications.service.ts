@@ -2,6 +2,13 @@ import { Injectable, inject, signal, computed } from '@angular/core';
 import { SupportedLang } from './language.service';
 import { FirebaseBackendService } from './firebase-backend.service';
 
+export interface CommunicationAttachment {
+  fileName: string;
+  fileSize?: string;
+  fileType?: string;
+  fileData?: string; // Base64 Data URL or direct file download link
+}
+
 export interface CommunicationItem {
   id: number;
   date: string;
@@ -14,6 +21,7 @@ export interface CommunicationItem {
   summary: Record<SupportedLang, string>;
   content: Record<SupportedLang, string[]>;
   signatory: Record<SupportedLang, string>;
+  attachment?: CommunicationAttachment | null;
 }
 
 const DEFAULT_ITEMS: CommunicationItem[] = [

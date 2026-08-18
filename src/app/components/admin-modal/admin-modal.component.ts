@@ -2,7 +2,7 @@ import { Component, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
-import { CommunicationsService, CommunicationItem } from '../../services/communications.service';
+import { CommunicationsService, CommunicationItem, CommunicationAttachment } from '../../services/communications.service';
 import { LanguageService } from '../../services/language.service';
 import { ContactMessagesService, ContactMessage } from '../../services/contact-messages.service';
 import { FirebaseBackendService } from '../../services/firebase-backend.service';
@@ -26,6 +26,10 @@ export class AdminModalComponent {
   public loginError = signal<string>('');
   public publishSuccess = signal<string>('');
   public publishError = signal<string>('');
+
+  // Attached file state
+  public currentAttachment = signal<CommunicationAttachment | null>(null);
+  public isFileLoading = signal<boolean>(false);
 
   // Login form
   public loginForm: FormGroup = this.fb.group({
@@ -74,6 +78,62 @@ export class AdminModalComponent {
     ];
     const now = new Date();
     return `${now.getDate()} ${months[now.getMonth()]} ${now.getFullYear()}`;
+  }
+
+  public onFileSelected(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    if (!input.files || input.files.length === 0) return;
+
+    const file = input.files[0];
+    
+    // Check 10MB limit
+    const maxBytes = 10 * 1024 * 1024;
+    if (file.size > maxBytes) {
+      const isHu = this.langService.currentLang() === 'hu';
+      this.publishError.set(isHu ? 'A kiválasztott fájl túl nagy! Maximális méret: 10 MB.' : 'Fișierul selectat este prea mare! Mărimea maximă admisă este 10 MB.');
+      input.value = '';
+      return;
+    }
+
+    // Format human readable size
+    let sizeStr = '';
+    if (file.size < 1024 * 1024) {
+      sizeStr = `${Math.round(file.size / 1024)} KB`;
+    } else {
+      sizeStr = `${(file.size / (1024 * 1024)).toFixed(1)} MB`;
+    }
+
+    this.isFileLoading.set(true);
+    const reader = new FileReader();
+
+    reader.onload = () => {
+      this.currentAttachment.set({
+        fileName: file.name,
+        fileSize: sizeStr,
+        fileType: file.type || 'application/octet-stream',
+        fileData: reader.result as string
+      });
+      this.isFileLoading.set(false);
+    };
+
+    reader.onerror = () => {
+      const isHu = this.langService.currentLang() === 'hu';
+      this.publishError.set(isHu ? 'Hiba történt a fájl beolvasásakor.' : 'Eroare la citirea fișierului.');
+      this.isFileLoading.set(false);
+      input.value = '';
+    };
+
+    reader.readAsDataURL(file);
+  }
+
+  public removeAttachment(): void {
+    this.currentAttachment.set(null);
+    if (typeof document !== 'undefined') {
+      const input = document.getElementById('comm-file-upload') as HTMLInputElement;
+      if (input) {
+        input.value = '';
+      }
+    }
   }
 
   onLoginSubmit(): void {
@@ -156,7 +216,7 @@ export class AdminModalComponent {
     const dateStr = val.date && val.date.trim() ? val.date.trim() : this.formatCurrentDate();
     const signatory = val.signatoryRo && val.signatoryRo.trim() ? val.signatoryRo.trim() : 'Consiliul de Administrație • AGROMEC SFÂNTU GHEORGHE SA';
 
-    const newItem = {
+    const newItem: Omit<CommunicationItem, 'id'> = {
       date: dateStr,
       year: currentYear,
       category: (val.category || 'anunturi') as 'aga' | 'rapoarte' | 'anunturi',
@@ -182,13 +242,17 @@ export class AdminModalComponent {
         ro: signatory,
         hu: val.signatoryHu?.trim() || signatory,
         en: val.signatoryEn?.trim() || signatory
-      }
+      },
+      attachment: this.currentAttachment()
     };
 
     this.commService.addCommunication(newItem);
     
     const lang = this.langService.currentLang();
-    this.publishSuccess.set(lang === 'hu' ? 'A hirdetés sikeresen közzétéve a weboldalon!' : 'Comunicatul a fost publicat cu succes pe site!');
+    this.publishSuccess.set(lang === 'hu' ? 'A hirdetés és a csatolt dokumentum sikeresen közzétéve a weboldalon!' : 'Comunicatul și documentul atașat au fost publicate cu succes pe site!');
+
+    // Reset attachment
+    this.currentAttachment.set(null);
 
     // Reset form with fresh doc number
     this.announcementForm.reset({
@@ -231,6 +295,7 @@ export class AdminModalComponent {
   closeModal(): void {
     this.loginError.set('');
     this.publishError.set('');
+    this.currentAttachment.set(null);
     this.loginForm.reset({ email: '', password: '' });
     this.authService.closeDashboard();
     this.authService.closeLoginModal();

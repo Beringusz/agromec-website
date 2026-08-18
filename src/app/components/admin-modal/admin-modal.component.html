@@ -193,7 +193,7 @@
               type="text" 
               class="form-control form-control-lg" 
               formControlName="titleRo" 
-              placeholder="ex: Convocator AGA / Informare..."
+              placeholder="ex: Proiect de Divizare / Convocator AGA / Informare..."
               [class.is-invalid]="announcementForm.get('titleRo')?.touched && announcementForm.get('titleRo')?.invalid"
             />
           </div>
@@ -219,8 +219,8 @@
               <label class="form-label" for="comm-cat">{{ langService.t().admin.fieldCategory }}</label>
               <select id="comm-cat" class="form-control" formControlName="category">
                 <option value="anunturi">Anunț General / Általános Hirdetmény</option>
-                <option value="aga">Convocator AGA / Közgyűlési Meghívó</option>
-                <option value="rapoarte">Raport Financiar / Pénzügyi Jelentés</option>
+                <option value="aga">Convocator AGA (Adunarea Generală a Acționarilor)</option>
+                <option value="rapoarte">Raport Financiar / Proiect de Divizare / Bilanț</option>
               </select>
             </div>
 
@@ -242,6 +242,64 @@
                 <input type="checkbox" formControlName="isImportant" />
                 <span>{{ langService.t().admin.fieldImportant }}</span>
               </label>
+            </div>
+          </div>
+
+          <!-- FILE UPLOAD ATTACHMENT SECTION -->
+          <div class="form-group file-upload-section">
+            <label class="form-label">
+              <svg class="label-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"></path>
+              </svg>
+              {{ langService.t().admin.fieldAttachment }}
+            </label>
+            
+            <div class="file-dropzone" *ngIf="!currentAttachment()">
+              <input 
+                #fileInput
+                type="file" 
+                class="file-input-hidden" 
+                id="comm-file-upload" 
+                accept=".pdf,.doc,.docx,.xls,.xlsx,.png,.jpg,.jpeg,.zip"
+                (change)="onFileSelected($event)"
+              />
+              <label for="comm-file-upload" class="dropzone-label">
+                <div class="dropzone-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                    <polyline points="17 8 12 3 7 8"></polyline>
+                    <line x1="12" y1="3" x2="12" y2="15"></line>
+                  </svg>
+                </div>
+                <div class="dropzone-text">
+                  <span class="dropzone-prompt">{{ langService.t().admin.dragDropFile }}</span>
+                  <span class="dropzone-formats">PDF, Word (DOC/DOCX), Excel (XLS), Imagini (max 10MB)</span>
+                </div>
+              </label>
+            </div>
+
+            <!-- Display Uploaded File Card -->
+            <div class="attached-file-card" *ngIf="currentAttachment() as att">
+              <div class="att-file-info">
+                <div class="att-file-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                    <polyline points="14 2 14 8 20 8"></polyline>
+                  </svg>
+                </div>
+                <div>
+                  <div class="att-file-name">{{ att.fileName }}</div>
+                  <div class="att-file-meta">{{ att.fileSize }} • Gata de publicare</div>
+                </div>
+              </div>
+              
+              <button type="button" class="btn-remove-att" (click)="removeAttachment()" title="Șterge fișier">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <line x1="18" y1="6" x2="6" y2="18"></line>
+                  <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+                <span>{{ langService.t().admin.removeFile }}</span>
+              </button>
             </div>
           </div>
 
@@ -273,7 +331,7 @@
 
           <!-- Action buttons -->
           <div class="form-submit-row">
-            <button type="submit" class="btn btn-primary btn-lg btn-publish-action">
+            <button type="submit" class="btn btn-primary btn-lg btn-publish-action" [disabled]="isFileLoading()">
               <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <polyline points="20 6 9 17 4 12"></polyline>
               </svg>
@@ -303,6 +361,7 @@
                 <th>{{ langService.t().admin.tableDate }}</th>
                 <th>{{ langService.t().admin.tableCategory }}</th>
                 <th>{{ langService.t().admin.tableTitle }}</th>
+                <th>{{ langService.t().admin.tableAttachment }}</th>
                 <th>{{ langService.t().admin.tableImportant }}</th>
                 <th>{{ langService.t().admin.tableActions }}</th>
               </tr>
@@ -318,6 +377,12 @@
                 </td>
                 <td class="table-title-cell">
                   <strong>{{ item.title.ro }}</strong>
+                </td>
+                <td>
+                  <span *ngIf="item.attachment" class="badge-file" title="{{ item.attachment.fileName }}">
+                    📎 {{ item.attachment.fileName }}
+                  </span>
+                  <span *ngIf="!item.attachment" class="badge-no-file">-</span>
                 </td>
                 <td>
                   <span *ngIf="item.isImportant" class="badge-star">⭐ Da</span>

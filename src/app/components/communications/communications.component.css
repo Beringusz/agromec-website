@@ -236,8 +236,36 @@
   font-size: 0.95rem;
   color: var(--slate-600);
   line-height: 1.6;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1rem;
   flex-grow: 1;
+}
+
+.comm-card-attachment {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  background-color: var(--primary-50);
+  border: 1px solid var(--primary-200);
+  color: var(--primary-800);
+  font-size: 0.78rem;
+  font-weight: 500;
+  padding: 0.3rem 0.65rem;
+  border-radius: var(--radius-md);
+  margin-bottom: 1.25rem;
+  max-width: 100%;
+}
+
+.comm-card-attachment span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.icon-att {
+  width: 15px;
+  height: 15px;
+  color: var(--primary-700);
+  flex-shrink: 0;
 }
 
 .comm-card-footer {

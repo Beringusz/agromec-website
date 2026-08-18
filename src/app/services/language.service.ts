@@ -62,6 +62,8 @@ export interface Translations {
     searchPlaceholder: string;
     readMore: string;
     downloadPdf: string;
+    downloadAttachment: string;
+    hasAttachment: string;
     publishedOn: string;
     category: string;
     noResults: string;
@@ -130,11 +132,16 @@ export interface Translations {
     fieldContent: string;
     fieldSummary: string;
     fieldSignatory: string;
+    fieldAttachment: string;
+    dragDropFile: string;
+    fileSelected: string;
+    removeFile: string;
     publishBtn: string;
     tableDoc: string;
     tableDate: string;
     tableCategory: string;
     tableTitle: string;
+    tableAttachment: string;
     tableImportant: string;
     tableActions: string;
     inboxTitle: string;
@@ -213,6 +220,8 @@ const TRANSLATIONS: Record<SupportedLang, Translations> = {
       searchPlaceholder: 'Caută după titlu, an sau cuvinte cheie...',
       readMore: 'Citește Comunicatul Complet',
       downloadPdf: 'Descarcă Document (PDF)',
+      downloadAttachment: 'Descarcă Documentul Oficial Atașat',
+      hasAttachment: 'Document atașat',
       publishedOn: 'Publicat la:',
       category: 'Categorie:',
       noResults: 'Nu a fost găsit niciun comunicat',
@@ -281,11 +290,16 @@ const TRANSLATIONS: Record<SupportedLang, Translations> = {
       fieldContent: 'Conținut Text Anunț (Textul complet):',
       fieldSummary: 'Rezumat Scurt (Opțional):',
       fieldSignatory: 'Semnatar Oficial:',
+      fieldAttachment: 'Atașează Document Oficial (PDF, DOCX, Scanare):',
+      dragDropFile: 'Apasă aici sau trage fișierul pentru încărcare (max. 10MB)',
+      fileSelected: 'Fișier atașat cu succes:',
+      removeFile: 'Șterge fișierul',
       publishBtn: 'Publică Comunicatul Acum',
       tableDoc: 'Nr. Doc',
       tableDate: 'Dată',
       tableCategory: 'Categorie',
       tableTitle: 'Titlu',
+      tableAttachment: 'Document',
       tableImportant: 'Important',
       tableActions: 'Acțiuni',
       inboxTitle: 'Mesaje Primite de pe Formularul de Contact',
@@ -362,6 +376,8 @@ const TRANSLATIONS: Record<SupportedLang, Translations> = {
       searchPlaceholder: 'Keresés cím, év vagy kulcsszó alapján...',
       readMore: 'Teljes Közlemény Elolvasása',
       downloadPdf: 'Dokumentum Letöltése (PDF)',
+      downloadAttachment: 'Csatolt Hivatalos Dokumentum Letöltése',
+      hasAttachment: 'Csatolt Dokumentum',
       publishedOn: 'Közzétéve:',
       category: 'Kategória:',
       noResults: 'Nem található közlemény',
@@ -430,11 +446,16 @@ const TRANSLATIONS: Record<SupportedLang, Translations> = {
       fieldContent: 'Hirdetmény Teljes Szövege:',
       fieldSummary: 'Rövid Összefoglaló (Opcionális):',
       fieldSignatory: 'Hivatalos Aláíró:',
+      fieldAttachment: 'Hivatalos Dokumentum Csatolása (PDF, DOCX, Kép):',
+      dragDropFile: 'Kattintson ide vagy húzza a fájlt a feltöltéshez (max. 10MB)',
+      fileSelected: 'Fájl sikeresen csatolva:',
+      removeFile: 'Fájl eltávolítása',
       publishBtn: 'Hirdetmény Közzététele Most',
       tableDoc: 'Iktatószám',
       tableDate: 'Dátum',
       tableCategory: 'Kategória',
       tableTitle: 'Cím',
+      tableAttachment: 'Csatolmány',
       tableImportant: 'Kiemelt',
       tableActions: 'Műveletek',
       inboxTitle: 'Kapcsolatfelvételi Űrlapról Érkezett Üzenetek',
@@ -511,6 +532,8 @@ const TRANSLATIONS: Record<SupportedLang, Translations> = {
       searchPlaceholder: 'Search by title, year, or keyword...',
       readMore: 'Read Full Announcement',
       downloadPdf: 'Download PDF Document',
+      downloadAttachment: 'Download Official Attached Document',
+      hasAttachment: 'Attached Document',
       publishedOn: 'Published on:',
       category: 'Category:',
       noResults: 'No notices found',
@@ -579,16 +602,21 @@ const TRANSLATIONS: Record<SupportedLang, Translations> = {
       fieldContent: 'Conținut Text Anunț (Textul complet):',
       fieldSummary: 'Rezumat Scurt (Opțional):',
       fieldSignatory: 'Semnatar Oficial:',
-      publishBtn: 'Publică Comunicatul Acum',
-      tableDoc: 'Nr. Doc',
-      tableDate: 'Dată',
-      tableCategory: 'Categorie',
-      tableTitle: 'Titlu',
+      fieldAttachment: 'Attach Official Document (PDF, DOCX, Images):',
+      dragDropFile: 'Click here or drag file to upload (max. 10MB)',
+      fileSelected: 'File attached successfully:',
+      removeFile: 'Remove attachment',
+      publishBtn: 'Publish Notice Now',
+      tableDoc: 'Doc No.',
+      tableDate: 'Date',
+      tableCategory: 'Category',
+      tableTitle: 'Title',
+      tableAttachment: 'Document',
       tableImportant: 'Important',
-      tableActions: 'Acțiuni',
-      inboxTitle: 'Mesaje Primite de pe Formularul de Contact',
-      inboxSubtitle: 'Toate solicitările transmise de vizitatori prin formularul de pe site.',
-      noMessages: 'Nu există mesaje primite în acest moment.'
+      tableActions: 'Actions',
+      inboxTitle: 'Messages Received via Contact Form',
+      inboxSubtitle: 'All inquiries submitted by visitors through the website form.',
+      noMessages: 'No messages received at this moment.'
     },
     footer: {
       tagline: 'Peste 35 de ani de excelență și continuitate în activități auxiliare pentru producția vegetală (CAEN 0161) în județul Covasna.',
